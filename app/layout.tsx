@@ -5,6 +5,7 @@ import { Navbar } from "@/components/client/layout/Navbar";
 import { Footer } from "@/components/server/layout/Footer";
 import { FloatingWhatsApp } from "@/components/client/layout/FloatingWhatsapp";
 import { ConfigContent } from "@/types/general";
+import { headers } from "next/headers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,7 +23,10 @@ export const metadata: Metadata = {
 };
 
 const getData = async (): Promise<ConfigContent> => {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+  const headersList = await headers();
+  const proto = headersList.get("x-forwarded-proto") || "http";
+  const host = headersList.get("host") || "localhost:3000";
+  const baseUrl = `${proto}://${host}`;
 
   const res = await fetch(`${baseUrl}/api/content/layout`, {
     next: { revalidate: 60 },

@@ -5,12 +5,14 @@ import { About } from "./components/About";
 import { FeaturedProducts } from "./components/FeatureProducts";
 import { Experience } from "./components/Experience";
 import { Location } from "./components/Location";
-import { Footer } from "@/components/server/layout/Footer";
-import { FloatingWhatsApp } from "@/components/client/layout/FloatingWhatsapp";
 import { HomeContent } from "@/types/home";
+import { headers } from "next/headers";
 
 const getData = async (): Promise<HomeContent> => {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+  const headersList = await headers();
+  const proto = headersList.get("x-forwarded-proto") || "http";
+  const host = headersList.get("host") || "localhost:3000";
+  const baseUrl = `${proto}://${host}`;
 
   const res = await fetch(`${baseUrl}/api/content/home`, {
     next: { revalidate: 60 },

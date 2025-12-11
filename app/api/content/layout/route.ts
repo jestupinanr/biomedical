@@ -46,7 +46,11 @@ export async function GET() {
     const rows = values.values;
 
     if (!rows || rows.length === 0) {
-      return {};
+      return NextResponse.json({
+        ok: false,
+        source: "fallback",
+        data: {},
+      });
     }
 
     const [header, ...dataRows] = rows;
