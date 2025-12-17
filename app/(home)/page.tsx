@@ -1,6 +1,5 @@
-import { Navbar } from "@/components/client/layout/Navbar";
 import { Hero } from "./components/Hero";
-import { Services } from "./components/Services";
+import { Services } from "./components/service/Services";
 import { About } from "./components/About";
 import { FeaturedProducts } from "./components/FeatureProducts";
 import { Experience } from "./components/Experience";

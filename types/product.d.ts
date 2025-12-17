@@ -1,7 +1,10 @@
+export interface ProductContent {
+  product: Record<string, ProductCompleteItem>;
+}
 export interface ProductCompleteItem {
-  id: number;
-  name: string;
+  title: string;
   category: string;
-  isOffer: "si" | "no";
+  offer: "si" | "no";
   image: string;
+  description: string;
 }

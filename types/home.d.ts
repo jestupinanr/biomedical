@@ -57,6 +57,7 @@ export interface ProductItem {
   image: string;
   title: string;
   offer: "si" | "no";
+  category: string;
   price?: number;
   offer_price?: number;
 }

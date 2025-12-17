@@ -5,6 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "../../components/server/common/Card";
+import { GraduationCap, ShieldCheck } from "lucide-react";
 
 const diyVideos = [
   {
@@ -64,7 +65,7 @@ const diyVideos = [
 //   return data;
 // };
 
-export default async function Products() {
+export default async function HazloTuMismo() {
   return (
     <section className="bg-gray-50 dark:bg-[#050514]">
       {/* Mini Banner */}
@@ -77,11 +78,16 @@ export default async function Products() {
       <div className="py-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <p className="text-[#0E0E0E] max-w-2xl mx-auto dark:text-white/70">
-              Mire nuestros tutoriales de video y aprenda a realizar
-              mantenimiento básico y solución de problemas en su equipo
-              biomédico.
-            </p>
+            <div className="inline-flex items-center gap-2 mb-4 px-6 py-2 bg-gradient-to-r from-[#24aae1]/10 via-[#1173bc]/10 to-[#2f3092]/10 backdrop-blur-sm rounded-full border border-[#24aae1]/20">
+              <GraduationCap className="w-5 h-5 text-[#24aae1]" />
+              <p className="text-sm text-[#1173bc]">
+                Mire nuestros tutoriales de video y aprenda a realizar
+                mantenimiento básico y solución de problemas en su equipo
+                biomédico.
+              </p>
+            </div>
+
+            <div className="w-24 h-1 bg-gradient-to-r from-transparent via-[#1173bc] to-transparent mx-auto rounded-full mt-6"></div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -120,15 +126,25 @@ export default async function Products() {
             ))}
           </div>
 
+          {/* Support Information */}
+          <div className="mt-12 text-center">
+            <div className="inline-flex items-center gap-3 px-6 py-4 bg-white dark:bg-[#2f3092]/20 backdrop-blur-sm rounded-[20px] border border-[#E5E7EB] dark:border-[#24aae1]/20 shadow-sm">
+              <div className="p-2 rounded-lg bg-[#24aae1]/10">
+                <ShieldCheck className="w-5 h-5 text-[#1173bc]" />
+              </div>
+              <div className="text-left =">
+                <p className="text-sm text-[#2f3092] dark:text-white">
+                  ¿Necesita más ayuda? Nuestro equipo de soporte técnico está
+                  aquí para ayudarlo.
+                </p>
+              </div>
+            </div>
+          </div>
           {/* Additional Help CTA */}
           <div className="mt-12 text-center">
-            <p className="text-[#0E0E0E] dark:text-white/70 mb-4">
-              ¿Necesita más ayuda? Nuestro equipo de soporte técnico está aquí
-              para ayudarlo.
-            </p>
             <a
               href="#contact"
-              className="inline-flex items-center justify-center px-8 py-3 bg-[#1D3DF8] hover:bg-[#1D3DF8]/90 text-white rounded-xl transition-all shadow-lg shadow-[#1D3DF8]/30"
+              className="inline-flex items-center justify-center px-8 py-3 bg-[#24aae1] hover:bg-[#24aae1]/90 text-white rounded-lg transition-all shadow-lg shadow-[#1D3DF8]/30"
             >
               Contactar Soporte
             </a>
