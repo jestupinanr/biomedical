@@ -7,9 +7,13 @@ import {
 } from "../../components/server/common/Card";
 import { GraduationCap, ShieldCheck } from "lucide-react";
 import { VideosContent } from "@/types/videos";
+import { headers } from "next/headers";
 
 const getData = async (): Promise<VideosContent> => {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+  const headersList = await headers();
+  const proto = headersList.get("x-forwarded-proto") || "http";
+  const host = headersList.get("host") || "localhost:3000";
+  const baseUrl = `${proto}://${host}`;
 
   const res = await fetch(`${baseUrl}/api/content/videos`, {
     next: { revalidate: 60 },

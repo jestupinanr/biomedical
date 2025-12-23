@@ -2,9 +2,13 @@ import { MiniBanner } from "@/components/server/common/MiniBanner";
 import { ShoppingCart } from "lucide-react";
 import ProductsList from "./components/ProductsList";
 import { ProductContent } from "@/types/product";
+import { headers } from "next/headers";
 
 const getData = async (): Promise<ProductContent> => {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+  const headersList = await headers();
+  const proto = headersList.get("x-forwarded-proto") || "http";
+  const host = headersList.get("host") || "localhost:3000";
+  const baseUrl = `${proto}://${host}`;
 
   const res = await fetch(`${baseUrl}/api/content/products`, {
     next: { revalidate: 60 },
