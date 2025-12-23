@@ -10,14 +10,14 @@ interface ProductProps {
 function CardBotton({ product }: ProductProps) {
   const handleWhatsAppClick = (productName: string) => {
     const message = encodeURIComponent(
-      `Hi, I'm interested in the ${productName}. Could you please provide pricing information?`
+      `Hola, estoy interesado en el ${productName}. ¿Podrías proporcionarme información sobre el precio?`
     );
     window.open(`https://wa.me/1234567890?text=${message}`, "_blank");
   };
 
   return (
     <Button
-      onClick={() => handleWhatsAppClick(product.name)}
+      onClick={() => handleWhatsAppClick(product.title)}
       className="w-full bg-[#1D3DF8] hover:bg-[#1D3DF8]/90 text-white rounded-xl text-sm py-2.5 h-auto"
     >
       <MessageCircle className="mr-2 h-4 w-4" />

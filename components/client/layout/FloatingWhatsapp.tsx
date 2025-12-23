@@ -22,21 +22,17 @@ export function FloatingWhatsApp({ data }: FloatingWhatsAppProps) {
     <>
       {/* Popup */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 bg-white rounded-2xl shadow-2xl p-6 max-w-sm z-50 border border-[#E5E7EB] animate-in slide-in-from-bottom-5 dark:bg-[#0C0F39] dark:border-white/10">
+        <div className="fixed bottom-24 right-6 bg-white rounded-2xl shadow-2xl p-6 max-w-sm z-50 border border-[#E5E7EB] animate-in slide-in-from-bottom-5 ">
           <button
             onClick={() => setIsOpen(false)}
-            className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:text-white/50 dark:hover:text-white/70"
+            className="absolute top-4 right-4 text-gray-400 hover:text-gray-600"
           >
             <X className="h-5 w-5" />
           </button>
 
           <div className="mb-4">
-            <h3 className="text-[#0C0F39] mb-2 dark:text-white">
-              {data.main.title}
-            </h3>
-            <p className="text-[#0E0E0E] text-sm dark:text-white/70">
-              {data.main.description}
-            </p>
+            <h3 className="text-[#0C0F39] mb-2 ">{data.main.title}</h3>
+            <p className="text-[#0E0E0E] text-sm ">{data.main.description}</p>
           </div>
 
           <Button
