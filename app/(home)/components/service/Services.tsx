@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import { Button } from "@/components/client/common/Button";
 import {
   Card,
   CardContent,
@@ -14,7 +13,6 @@ import {
   GraduationCap,
   Hammer,
   Monitor,
-  ArrowRight,
   BookUser,
 } from "lucide-react";
 import { Services as ServicesType } from "@/types/home";
@@ -62,11 +60,11 @@ export function Services({ data }: ServicesProps) {
   });
 
   return (
-    <section className="py-24 bg-white dark:bg-[#050514]" id="services">
+    <section className="py-24 bg-white" id="services">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Wave Layer 1 */}
         <svg
-          className="absolute top-0 right-0 w-full h-full opacity-30 dark:opacity-20"
+          className="absolute top-0 right-0 w-full h-full opacity-30"
           preserveAspectRatio="none"
           viewBox="0 0 1440 800"
         >
@@ -90,7 +88,7 @@ export function Services({ data }: ServicesProps) {
 
         {/* Wave Layer 2 */}
         <svg
-          className="absolute bottom-0 left-0 w-full h-2/3 opacity-20 dark:opacity-15"
+          className="absolute bottom-0 left-0 w-full h-2/3 opacity-20"
           preserveAspectRatio="none"
           viewBox="0 0 1440 800"
         >
@@ -113,22 +111,20 @@ export function Services({ data }: ServicesProps) {
         </svg>
 
         {/* Floating Circles */}
-        <div className="absolute top-20 left-20 w-64 h-64 bg-gradient-to-br from-[#1173bc]/8 to-transparent rounded-full blur-3xl"></div>
-        <div className="absolute bottom-32 right-32 w-96 h-96 bg-gradient-to-tr from-[#24aae1]/6 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute top-20 left-20 w-64 h-64 bg-linear-to-br from-[#1173bc]/8 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute bottom-32 right-32 w-96 h-96 bg-linear-to-tr from-[#24aae1]/6 to-transparent rounded-full blur-3xl"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16 relative">
-          <h2 className="mb-4 text-[#2f3092] dark:text-white">
-            {data.main.title}
-          </h2>
-          <div className="inline-flex items-center gap-2 mb-4 px-6 py-2 bg-gradient-to-r from-[#24aae1]/10 via-[#1173bc]/10 to-[#2f3092]/10 backdrop-blur-sm rounded-full border border-[#24aae1]/20">
+          <h2 className="mb-4 text-[#2f3092]">{data.main.title}</h2>
+          <div className="inline-flex items-center gap-2 mb-4 px-6 py-2 bg-linear-to-r from-[#24aae1]/10 via-[#1173bc]/10 to-[#2f3092]/10 backdrop-blur-sm rounded-full border border-[#24aae1]/20">
             <BookUser className="w-5 h-5 text-[#24aae1] hidden md:inline" />
             <span className="text-sm text-[#1173bc]">
               {data.main.description}
             </span>
           </div>
-          <div className="w-24 h-1 bg-gradient-to-r from-transparent via-[#24aae1] to-transparent mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-linear-to-r from-transparent via-[#24aae1] to-transparent mx-auto rounded-full"></div>
         </div>
 
         {/* Main 3x2 Grid */}
@@ -136,7 +132,7 @@ export function Services({ data }: ServicesProps) {
           {services.map((service, index) => (
             <Card
               key={index}
-              className="group hover:shadow-xl transition-all duration-300 border-[#E5E7EB] dark:border-white/10 rounded-[24px] overflow-hidden hover:-translate-y-1 bg-white dark:bg-[#0C0F39] shadow-sm"
+              className="group hover:shadow-xl transition-all duration-300 border-[#E5E7EB] rounded-3xl overflow-hidden hover:-translate-y-1 bg-white shadow-sm"
             >
               {/* Image Header */}
               <div className="relative h-48 overflow-hidden">
@@ -147,22 +143,22 @@ export function Services({ data }: ServicesProps) {
                 />
 
                 {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0C0F39]/90 via-[#0C0F39]/40 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-[#0C0F39]/90 via-[#0C0F39]/40 to-transparent" />
 
                 {/* Icon Badge */}
-                <div className="absolute bottom-4 right-4 w-14 h-14 bg-gradient-to-br from-[#24aae1] to-[#1173bc] rounded-xl flex items-center justify-center shadow-lg shadow-[#24aae1]/30 group-hover:scale-110 transition-transform">
+                <div className="absolute bottom-4 right-4 w-14 h-14 bg-linear-to-br from-[#24aae1] to-[#1173bc] rounded-xl flex items-center justify-center shadow-lg shadow-[#24aae1]/30 group-hover:scale-110 transition-transform">
                   <service.icon className="h-7 w-7 text-white" />
                 </div>
               </div>
 
               <CardHeader className="pb-3">
-                <CardTitle className="text-[#2f3092] dark:text-white">
+                <CardTitle className="text-[#2f3092] ">
                   {service.title}
                 </CardTitle>
               </CardHeader>
 
               <CardContent>
-                <p className="text-[#2f3092] dark:text-white/80 leading-relaxed">
+                <p className="text-[#2f3092] leading-relaxed">
                   {service.description}
                 </p>
               </CardContent>
@@ -171,7 +167,7 @@ export function Services({ data }: ServicesProps) {
         </div>
 
         {/* Featured Full-Width Maintenance Software Card */}
-        <Card className="group hover:shadow-2xl transition-all duration-300 border-[#E5E7EB] dark:border-white/10 rounded-[24px] overflow-hidden bg-white dark:bg-[#2f3092] shadow-xl relative">
+        <Card className="group hover:shadow-2xl transition-all duration-300 border-[#E5E7EB] rounded-3xl overflow-hidden bg-white shadow-xl relative">
           <div className="grid md:grid-cols-2 gap-0">
             {/* Image Side - Visual Story */}
             <div className="relative h-64 md:h-auto overflow-hidden">
@@ -181,16 +177,16 @@ export function Services({ data }: ServicesProps) {
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
               {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-r from-[#2f3092]/80 via-[#2f3092]/50 to-transparent md:from-transparent md:via-transparent md:to-transparent"></div>
+              <div className="absolute inset-0 bg-linear-to-r from-[#2f3092]/80 via-[#2f3092]/50 to-transparent md:from-transparent md:via-transparent md:to-transparent"></div>
 
               {/* Floating Icon Badge - visible on mobile */}
-              <div className="absolute top-6 left-6 md:hidden w-16 h-16 bg-gradient-to-br from-[#24aae1] to-[#1173bc] rounded-2xl flex items-center justify-center shadow-lg shadow-[#24aae1]/30">
+              <div className="absolute top-6 left-6 md:hidden w-16 h-16 bg-linear-to-br from-[#24aae1] to-[#1173bc] rounded-2xl flex items-center justify-center shadow-lg shadow-[#24aae1]/30">
                 <Monitor className="h-8 w-8 text-white" />
               </div>
             </div>
 
             {/* Content Side */}
-            <div className="relative bg-gradient-to-br from-[#2f3092] to-[#1173bc] p-8 md:p-10 flex flex-col justify-center">
+            <div className="relative bg-linear-to-br from-[#2f3092] to-[#1173bc] p-8 md:p-10 flex flex-col justify-center">
               {/* Decorative elements */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
               <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#24aae1]/20 rounded-full blur-2xl"></div>

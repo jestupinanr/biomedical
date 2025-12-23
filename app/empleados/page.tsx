@@ -13,46 +13,64 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import EmployeeButton from "./components/EmployeeButton";
-const platforms = [
-  {
-    id: "samm",
-    title: "SAMM",
-    subtitle: "Sistema de Gestión de Mantenimiento",
-    description:
-      "Plataforma integral para seguimiento de equipos, programación de mantenimiento y gestión de servicios.",
-    icon: ShieldCheck,
-    features: [
-      { icon: FileText, text: "Seguimiento de solicitudes de servicio" },
-      { icon: Calendar, text: "Programación de mantenimiento" },
-      { icon: UserCheck, text: "Inventario de equipos" },
-    ],
-    link: "https://app.softwaresamm.com/endowment/forms/publica/login.aspx?ReturnUrl=%2fendowment%2fforms%2fgeneral%2finicio.aspx",
-    gradient: "from-[#2f3092] to-[#1173bc]",
-    accentColor: "#2f3092",
-  },
-  {
-    id: "hr",
-    title: "Plataforma de Recursos Humanos",
-    subtitle: "Portal de autoservicio para empleados",
-    description:
-      "Acceda a su información personal, beneficios, nómina, solicitudes de tiempo libre y recursos de la empresa.",
-    icon: Users,
-    features: [
-      { icon: Users, text: "Información personal y documentos" },
-      { icon: Calendar, text: "Solicitudes y horarios de tiempo libre" },
-      { icon: FileText, text: "Información sobre beneficios y nómina" },
-    ],
-    link: "https://be.buk.co/users/sign_in#liquidaciones",
-    gradient: "from-[#1173bc] to-[#24aae1]",
-    accentColor: "#1173bc",
-  },
-];
+import { EmployeesContent } from "@/types/employee";
+import { ImageWithFallback } from "@/components/client/common/ImageWithFallback";
 
-export default async function HazloTuMismo() {
+const getData = async (): Promise<EmployeesContent> => {
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+
+  const res = await fetch(`${baseUrl}/api/content/employees`, {
+    next: { revalidate: 60 },
+  });
+
+  if (!res.ok) throw new Error("Failed to fetch content");
+
+  const { data } = await res.json();
+  return data;
+};
+
+export default async function Employee() {
+  const data = await getData();
+
+  const platforms = [
+    {
+      id: "samm",
+      title: data.empleados.samm.title,
+      subtitle: data.empleados.samm.subtitle,
+      description: data.empleados.samm.description,
+      logo: "/samm-logo.png",
+      logoClassname: "w-24 h-14",
+      features: [
+        { icon: FileText, text: data.empleados.samm.item_1 },
+        { icon: Calendar, text: data.empleados.samm.item_2 },
+        { icon: UserCheck, text: data.empleados.samm.item_3 },
+      ],
+      link: "https://app.softwaresamm.com/endowment/forms/publica/login.aspx?ReturnUrl=%2fendowment%2fforms%2fgeneral%2finicio.aspx",
+      gradient: "from-[#2f3092] to-[#1173bc]",
+      accentColor: "#2f3092",
+    },
+    {
+      id: "hr",
+      title: data.empleados.rrhh.title,
+      subtitle: data.empleados.rrhh.subtitle,
+      description: data.empleados.rrhh.description,
+      logo: "buk.svg",
+      logoClassname: "w-12 h-14",
+      features: [
+        { icon: Users, text: data.empleados.rrhh.item_1 },
+        { icon: Calendar, text: data.empleados.rrhh.item_2 },
+        { icon: FileText, text: data.empleados.rrhh.item_3 },
+      ],
+      link: "https://be.buk.co/users/sign_in#liquidaciones",
+      gradient: "from-[#1173bc] to-[#24aae1]",
+      accentColor: "#1173bc",
+    },
+  ];
+
   return (
-    <section className="bg-gray-50 dark:bg-[#050514]">
+    <section className="bg-gray-50">
       {/* Subtle Background Pattern */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30 dark:opacity-20">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
         <svg
           className="absolute top-0 right-0 w-1/2 h-full"
           viewBox="0 0 400 800"
@@ -91,47 +109,42 @@ export default async function HazloTuMismo() {
       <div className="max-w-7xl mx-auto px-6 relative z-10 py-20">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <p className="text-[#2f3092]/70 dark:text-white/70 max-w-2xl mx-auto">
-            Acceda a herramientas y plataformas esenciales para optimizar su
-            trabajo y mantenerse conectado.
+          <p className="text-[#2f3092]/70 max-w-2xl mx-auto">
+            {data.empleados.main.description}
           </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-transparent via-[#1173bc] to-transparent mx-auto rounded-full mt-6"></div>
+          <div className="w-24 h-1 bg-linear-to-r from-transparent via-[#1173bc] to-transparent mx-auto rounded-full mt-6"></div>
         </div>
 
         {/* Platform Cards Grid */}
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {platforms.map((platform) => {
-            const IconComponent = platform.icon;
             return (
               <Card
                 key={platform.id}
-                className="group relative overflow-hidden rounded-[32px] border border-[#E5E7EB] dark:border-[#24aae1]/20 shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:shadow-[0_8px_30px_rgba(36,170,225,0.1)] hover:shadow-[0_12px_35px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_12px_35px_rgba(36,170,225,0.18)] hover:border-[#24aae1]/40 dark:hover:border-[#24aae1]/40 transition-all duration-300 bg-white dark:bg-[#2f3092]/30 backdrop-blur-md"
+                className="group relative overflow-hidden rounded-4xl border border-[#E5E7EB] shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:shadow-[0_12px_35px_rgb(0,0,0,0.12)] hover:border-[#24aae1]/40 transition-all duration-300 bg-white  backdrop-blur-md"
               >
                 {/* Gradient Background Accent */}
                 <div
-                  className={`absolute top-0 left-0 right-0 h-2 bg-gradient-to-r ${platform.gradient}`}
+                  className={`absolute top-0 left-0 right-0 h-2 bg-linear-to-r ${platform.gradient}`}
                 ></div>
 
                 <CardHeader className="pb-4 pt-8">
-                  {/* Icon Container */}
-                  <div className="mb-4">
-                    <div
-                      className={`inline-flex p-4 rounded-[20px] bg-gradient-to-br ${platform.gradient} shadow-lg`}
-                    >
-                      <IconComponent className="w-8 h-8 text-white" />
-                    </div>
-                  </div>
+                  <ImageWithFallback
+                    src={platform.logo}
+                    alt="test-image"
+                    className={`${platform.logoClassname} object-cover`}
+                    // width={100}
+                    // height={100}
+                  />
 
-                  <CardTitle className="text-[#2f3092] dark:text-white text-2xl mb-2">
+                  <CardTitle className="text-[#2f3092] text-2xl mb-2">
                     {platform.title}
                   </CardTitle>
-                  <p className="text-[#1173bc] dark:text-[#24aae1] text-sm">
-                    {platform.subtitle}
-                  </p>
+                  <p className="text-[#1173bc] text-sm">{platform.subtitle}</p>
                 </CardHeader>
 
                 <CardContent className="pb-8">
-                  <p className="text-[#2f3092]/70 dark:text-white/70 text-sm mb-6 leading-relaxed">
+                  <p className="text-[#2f3092]/70 text-sm mb-6 leading-relaxed">
                     {platform.description}
                   </p>
 
@@ -141,10 +154,10 @@ export default async function HazloTuMismo() {
                       const FeatureIcon = feature.icon;
                       return (
                         <div key={index} className="flex items-start gap-3">
-                          <div className="mt-0.5 p-1.5 rounded-lg bg-gradient-to-br from-[#24aae1]/10 to-[#1173bc]/10">
+                          <div className="mt-0.5 p-1.5 rounded-lg bg-linear-to-br from-[#24aae1]/10 to-[#1173bc]/10">
                             <FeatureIcon className="w-4 h-4 text-[#1173bc]" />
                           </div>
-                          <span className="text-sm text-[#2f3092]/80 dark:text-white/70">
+                          <span className="text-sm text-[#2f3092]/80">
                             {feature.text}
                           </span>
                         </div>
@@ -165,17 +178,16 @@ export default async function HazloTuMismo() {
 
         {/* Support Information */}
         <div className="mt-12 text-center">
-          <div className="inline-flex items-start gap-3 px-6 py-4 bg-white dark:bg-[#2f3092]/20 backdrop-blur-sm rounded-[20px] border border-[#E5E7EB] dark:border-[#24aae1]/20 shadow-sm">
+          <div className="inline-flex items-start gap-3 px-6 py-4 bg-white  backdrop-blur-sm rounded-[20px] border border-[#E5E7EB] shadow-sm">
             <div className="p-2 rounded-lg bg-[#24aae1]/10">
               <ShieldCheck className="w-5 h-5 text-[#1173bc]" />
             </div>
             <div className="text-left">
-              <p className="text-sm text-[#2f3092] dark:text-white">
-                ¿Necesita ayuda para acceder a estas plataformas?{" "}
+              <p className="text-sm text-[#2f3092]">
+                {data.empleados.help.title}
               </p>
-              <p className="text-xs text-[#2f3092]/70 dark:text-white/70 mt-1">
-                Comuníquese con el soporte de TI o el departamento de RR. HH.
-                para obtener ayuda con las credenciales de inicio de sesión.
+              <p className="text-xs text-[#2f3092]/70 mt-1">
+                {data.empleados.help.description}
               </p>
             </div>
           </div>

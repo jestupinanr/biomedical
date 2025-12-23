@@ -11,15 +11,12 @@ export function About({ data }: AboutProps) {
     .map((key) => data.main[key as keyof typeof data.main]);
 
   return (
-    <section
-      className="py-24 bg-white dark:bg-[#1a1a2e] relative overflow-hidden"
-      id="about"
-    >
+    <section className="py-24 bg-white relative overflow-hidden" id="about">
       {/* Abstract Biomedical Wave Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Wave Layer 1 */}
         <svg
-          className="absolute top-0 left-0 w-full h-full opacity-25 dark:opacity-18"
+          className="absolute top-0 left-0 w-full h-full opacity-25"
           preserveAspectRatio="none"
           viewBox="0 0 1440 800"
         >
@@ -37,7 +34,7 @@ export function About({ data }: AboutProps) {
 
         {/* Wave Layer 2 */}
         <svg
-          className="absolute bottom-0 right-0 w-full h-3/4 opacity-20 dark:opacity-15"
+          className="absolute bottom-0 right-0 w-full h-3/4 opacity-20"
           preserveAspectRatio="none"
           viewBox="0 0 1440 800"
         >
@@ -60,17 +57,17 @@ export function About({ data }: AboutProps) {
         </svg>
 
         {/* Floating Circles */}
-        <div className="absolute top-40 right-40 w-72 h-72 bg-gradient-to-br from-[#2f3092]/6 to-transparent rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-tr from-[#24aae1]/5 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute top-40 right-40 w-72 h-72 bg-linear-to-br from-[#2f3092]/6 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 left-20 w-80 h-80 bg-linear-to-tr from-[#24aae1]/5 to-transparent rounded-full blur-3xl"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Image */}
           <div className="relative order-2 lg:order-1">
-            <div className="aspect-[4/3] bg-gradient-to-br from-[#2f3092] to-[#1173bc] rounded-[24px] overflow-hidden shadow-2xl relative">
+            <div className="aspect-4/3 bg-linear-to-br from-[#2f3092] to-[#1173bc] rounded-3xl overflow-hidden shadow-2xl relative">
               {/* Gradient overlay - darker in dark mode */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#24aae1]/40 to-transparent dark:from-black/60 dark:to-transparent"></div>
+              <div className="absolute inset-0 bg-linear-to-br from-[#24aae1]/40 to-transparent"></div>
               <div className="absolute inset-0 flex items-center justify-center text-white/20">
                 <svg
                   className="w-40 h-40"
@@ -82,7 +79,7 @@ export function About({ data }: AboutProps) {
               </div>
             </div>
             {/* Decorative accent */}
-            <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-[#24aae1]/10 rounded-[24px] -z-10"></div>
+            <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-[#24aae1]/10 rounded-3xl -z-10"></div>
           </div>
 
           {/* Content with accent bar */}
@@ -94,25 +91,17 @@ export function About({ data }: AboutProps) {
               <div className="inline-block mb-4 px-4 py-2 bg-[#24aae1]/10 text-[#1173bc] rounded-full">
                 Acerca de nosotros
               </div>
-              <h2 className="mb-6 text-[#2f3092] dark:text-white">
-                {data.main.paragraph_1}
-              </h2>
-              <p className="mb-6 text-[#2f3092]/80 dark:text-white/70">
-                {data.main.paragraph_2}
-              </p>
-              <p className="mb-8 text-[#2f3092]/80 dark:text-white/70">
-                {data.main.paragraph_3}
-              </p>
+              <h2 className="mb-6 text-[#2f3092] ">{data.main.paragraph_1}</h2>
+              <p className="mb-6 text-[#2f3092]/80">{data.main.paragraph_2}</p>
+              <p className="mb-8 text-[#2f3092]/80">{data.main.paragraph_3}</p>
 
               <div className="space-y-4">
                 {highlights.map((highlight, index) => (
                   <div key={index} className="flex items-start gap-3">
-                    <div className="w-6 h-6 bg-[#24aae1] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <div className="w-6 h-6 bg-[#24aae1] rounded-full flex items-center justify-center shrink-0 mt-0.5">
                       <CheckCircle2 className="h-4 w-4 text-white" />
                     </div>
-                    <span className="text-[#2f3092] dark:text-white">
-                      {highlight}
-                    </span>
+                    <span className="text-[#2f3092]">{highlight}</span>
                   </div>
                 ))}
               </div>

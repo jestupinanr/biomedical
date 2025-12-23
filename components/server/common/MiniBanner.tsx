@@ -18,7 +18,7 @@ export function MiniBanner({ title, backgroundImage }: MiniBannerProps) {
       </div>
 
       {/* Overlay - matching the style from the reference */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0C0F39]/80 via-[#0C0F39]/70 to-[#0C0F39]/80 dark:from-[#050514]/90 dark:via-[#050514]/80 dark:to-[#050514]/90"></div>
+      <div className="absolute inset-0 bg-linear-to-r from-[#0C0F39]/80 via-[#0C0F39]/70 to-[#0C0F39]/80"></div>
 
       {/* Content */}
       <div className="relative h-full flex items-center justify-center px-6">

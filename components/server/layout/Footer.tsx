@@ -8,7 +8,7 @@ interface FooterProps {
 }
 export function Footer({ data, navbarData }: FooterProps) {
   return (
-    <footer className="bg-white text-black dark:bg-[#050514] border-t border-[#24aae1]/15 shadow-lg ">
+    <footer className="bg-white text-black border-t border-[#24aae1]/15 shadow-lg ">
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Company Info */}
@@ -24,19 +24,19 @@ export function Footer({ data, navbarData }: FooterProps) {
             <div className="flex gap-3">
               <a
                 href="#"
-                className="w-11 h-11 bg-gradient-to-br text-white from-[#24aae1] to-[#1173bc] rounded-xl flex items-center justify-center transition-colors"
+                className="w-11 h-11 bg-linear-to-br text-white from-[#24aae1] to-[#1173bc] rounded-xl flex items-center justify-center transition-colors"
               >
                 <Linkedin className="h-5 w-5" />
               </a>
               <a
                 href="#"
-                className="w-11 h-11 bg-gradient-to-br text-white from-[#24aae1] to-[#1173bc] rounded-xl flex items-center justify-center transition-colors"
+                className="w-11 h-11 bg-linear-to-br text-white from-[#24aae1] to-[#1173bc] rounded-xl flex items-center justify-center transition-colors"
               >
                 <Twitter className="h-5 w-5" />
               </a>
               <a
                 href="#"
-                className="w-11 h-11 bg-gradient-to-br text-white from-[#24aae1] to-[#1173bc] rounded-xl flex items-center justify-center transition-colors"
+                className="w-11 h-11 bg-linear-to-br text-white from-[#24aae1] to-[#1173bc] rounded-xl flex items-center justify-center transition-colors"
               >
                 <Facebook className="h-5 w-5" />
               </a>
@@ -121,7 +121,7 @@ export function Footer({ data, navbarData }: FooterProps) {
                 href="mailto:info@biomedicalendowment.com"
                 className="flex items-center gap-3 text-black/70 hover:text-black transition-colors group"
               >
-                <div className="w-11 h-11 bg-gradient-to-br text-white from-[#24aae1] to-[#1173bc] rounded-xl flex items-center justify-center flex-shrink-0 transition-colors">
+                <div className="w-11 h-11 bg-linear-to-br text-white from-[#24aae1] to-[#1173bc] rounded-xl flex items-center justify-center shrink-0 transition-colors">
                   <Mail className="h-5 w-5" />
                 </div>
                 <div className="text-sm">{data.main.email}</div>
@@ -131,7 +131,7 @@ export function Footer({ data, navbarData }: FooterProps) {
                 href="tel:+15551234567"
                 className="flex items-center gap-3 text-black/70 hover:text-black transition-colors group"
               >
-                <div className="w-11 h-11 bg-gradient-to-br text-white from-[#24aae1] to-[#1173bc] rounded-xl flex items-center justify-center flex-shrink-0 transition-colors">
+                <div className="w-11 h-11 bg-linear-to-br text-white from-[#24aae1] to-[#1173bc] rounded-xl flex items-center justify-center shrink-0 transition-colors">
                   <Phone className="h-5 w-5" />
                 </div>
                 <div className="text-sm">{data.main.phone}</div>

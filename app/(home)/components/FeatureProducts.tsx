@@ -28,12 +28,12 @@ export function FeaturedProducts({ data }: ProductProps) {
     .map((key) => data[key as keyof typeof data]) as ProductItem[];
 
   return (
-    <section className="py-24 bg-white dark:bg-[#1a1a2e] relative overflow-hidden">
+    <section className="py-24 bg-white relative overflow-hidden">
       {/* Abstract Biomedical Wave Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Wave Layer 1 - Top */}
         <svg
-          className="absolute top-0 left-0 w-full h-full opacity-30 dark:opacity-20"
+          className="absolute top-0 left-0 w-full h-full opacity-30"
           preserveAspectRatio="none"
           viewBox="0 0 1440 800"
         >
@@ -57,7 +57,7 @@ export function FeaturedProducts({ data }: ProductProps) {
 
         {/* Wave Layer 2 - Middle */}
         <svg
-          className="absolute top-1/4 left-0 w-full h-3/4 opacity-20 dark:opacity-15"
+          className="absolute top-1/4 left-0 w-full h-3/4 opacity-20"
           preserveAspectRatio="none"
           viewBox="0 0 1440 800"
         >
@@ -81,7 +81,7 @@ export function FeaturedProducts({ data }: ProductProps) {
 
         {/* Wave Layer 3 - Bottom */}
         <svg
-          className="absolute bottom-0 left-0 w-full h-2/3 opacity-25 dark:opacity-18"
+          className="absolute bottom-0 left-0 w-full h-2/3 opacity-25"
           preserveAspectRatio="none"
           viewBox="0 0 1440 800"
         >
@@ -104,24 +104,22 @@ export function FeaturedProducts({ data }: ProductProps) {
         </svg>
 
         {/* Floating Circles - Biomedical Particles */}
-        <div className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-br from-[#24aae1]/10 to-transparent rounded-full blur-3xl"></div>
-        <div className="absolute bottom-32 left-32 w-96 h-96 bg-gradient-to-tr from-[#1173bc]/8 to-transparent rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/3 w-48 h-48 bg-gradient-to-bl from-[#2f3092]/10 to-transparent rounded-full blur-2xl"></div>
+        <div className="absolute top-20 right-20 w-64 h-64 bg-linear-to-br from-[#24aae1]/10 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute bottom-32 left-32 w-96 h-96 bg-linear-to-tr from-[#1173bc]/8 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/3 w-48 h-48 bg-linear-to-bl from-[#2f3092]/10 to-transparent rounded-full blur-2xl"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Header with Fluid Accent */}
         <div className="text-center mb-16 relative">
-          <h2 className="mb-4 text-[#2f3092] dark:text-white">
-            {data.main.title}
-          </h2>
-          <div className="inline-flex items-center gap-2 mb-4 px-6 py-2 bg-gradient-to-r from-[#24aae1]/10 via-[#1173bc]/10 to-[#2f3092]/10 backdrop-blur-sm rounded-full border border-[#24aae1]/20">
+          <h2 className="mb-4 text-[#2f3092]">{data.main.title}</h2>
+          <div className="inline-flex items-center gap-2 mb-4 px-6 py-2 bg-linear-to-r from-[#24aae1]/10 via-[#1173bc]/10 to-[#2f3092]/10 backdrop-blur-sm rounded-full border border-[#24aae1]/20">
             <ShoppingCart className="w-5 h-5 text-[#24aae1] hidden md:inline" />
             <span className="text-sm text-[#1173bc]">
               {data.main.description}
             </span>
           </div>
-          <div className="w-24 h-1 bg-gradient-to-r from-transparent via-[#24aae1] to-transparent mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-linear-to-r from-transparent via-[#24aae1] to-transparent mx-auto rounded-full"></div>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8">
@@ -129,11 +127,11 @@ export function FeaturedProducts({ data }: ProductProps) {
           <div className="grid grid-cols-2 gap-1 md:gap-6">
             {products.map((product, index) => (
               <div key={`${product.title} ${index}`} className="relative group">
-                <Card className="relative overflow-hidden rounded-[32px] border border-[#E5E7EB]/50 dark:border-[#24aae1]/20 shadow-[0_8px_30px_rgb(0,0,0,0.08)] dark:shadow-[0_8px_30px_rgba(36,170,225,0.1)] hover:shadow-[0_12px_35px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_12px_35px_rgba(36,170,225,0.18)] hover:border-[#24aae1]/40 dark:hover:border-[#24aae1]/40 transition-all duration-300 bg-white dark:bg-[#2f3092]/40 backdrop-blur-md flex flex-col h-full">
+                <Card className="relative overflow-hidden rounded-4xl border border-[#E5E7EB]/50 shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:shadow-[0_12px_35px_rgb(0,0,0,0.12)] hover:border-[#24aae1]/40 transition-all duration-300 bg-white backdrop-blur-md flex flex-col h-full">
                   {/* Offer Badge - Organic Shape */}
                   {product.offer.toLocaleLowerCase() === "si" && (
                     <div className="absolute top-1 right-1 md:top-4 md:right-4 z-20">
-                      <Badge className="bg-gradient-to-br from-[#24aae1] to-[#1173bc] hover:from-[#1173bc] hover:to-[#2f3092] text-white px-4 py-1.5 rounded-full text-xs shadow-lg border border-white/30 dark:border-white/20 transition-all duration-300">
+                      <Badge className="bg-linear-to-br from-[#24aae1] to-[#1173bc] hover:from-[#1173bc] hover:to-[#2f3092] text-white px-4 py-1.5 rounded-full text-xs shadow-lg border border-white/30 transition-all duration-300">
                         <Sparkles className="w-3 h-3 mr-1 inline" />
                         OFERTA
                       </Badge>
@@ -142,9 +140,9 @@ export function FeaturedProducts({ data }: ProductProps) {
 
                   {/* Image Container - Fully Contained */}
                   <div className="relative p-1 md:p-4 pb-2">
-                    <div className="aspect-square rounded-[24px] overflow-hidden relative">
+                    <div className="aspect-square rounded-3xl overflow-hidden relative">
                       {/* Gradient Background */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-[#24aae1]/20 via-[#1173bc]/10 to-[#2f3092]/20"></div>
+                      <div className="absolute inset-0 bg-linear-to-br from-[#24aae1]/20 via-[#1173bc]/10 to-[#2f3092]/20"></div>
 
                       <ImageWithFallback
                         src={product.image}
@@ -153,12 +151,12 @@ export function FeaturedProducts({ data }: ProductProps) {
                       />
 
                       {/* Flowing Gradient Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-white/90 dark:from-[#2f3092]/90 via-transparent to-transparent"></div>
+                      <div className="absolute inset-0 bg-linear-to-t from-white/90 via-transparent to-transparent"></div>
 
                       {/* Category Pill - Internal */}
                       <div className="absolute bottom-0 left-1 ">
-                        <div className="px-3 py-1 bg-white/95 dark:bg-[#2f3092]/95 backdrop-blur-md rounded-full border border-[#24aae1]/30 shadow-md">
-                          <span className="text-[10px] text-[#1173bc] dark:text-[#24aae1] sm:text-xs">
+                        <div className="px-3 py-1 bg-white/95 backdrop-blur-md rounded-full border border-[#24aae1]/30 shadow-md">
+                          <span className="text-[10px] text-[#1173bc] sm:text-xs">
                             {product.category}
                           </span>
                         </div>
@@ -166,8 +164,8 @@ export function FeaturedProducts({ data }: ProductProps) {
                     </div>
                   </div>
 
-                  <CardHeader className="pb-2 px-1 md:px-5 pt-2 flex-grow">
-                    <CardTitle className="text-[#2f3092] dark:text-white text-sm leading-tight">
+                  <CardHeader className="pb-2 px-1 md:px-5 pt-2 grow">
+                    <CardTitle className="text-[#2f3092] text-sm leading-tight">
                       {product.title}
                     </CardTitle>
                   </CardHeader>
@@ -175,7 +173,7 @@ export function FeaturedProducts({ data }: ProductProps) {
                   <CardContent className="px-1 md:px-5 pb-1 md:pb-5 pt-0">
                     <Button
                       onClick={() => handleWhatsAppClick(product.title)}
-                      className="w-full bg-gradient-to-r from-[#24aae1] to-[#1173bc] hover:from-[#1173bc] hover:to-[#2f3092] text-white rounded-full text-xs py-3 h-auto shadow-md hover:shadow-lg shadow-[#24aae1]/30 hover:shadow-[#1173bc]/40 transition-all duration-300 border-0 cursor-pointer"
+                      className="w-full bg-linear-to-r from-[#24aae1] to-[#1173bc] hover:from-[#1173bc] hover:to-[#2f3092] text-white rounded-full text-xs py-3 h-auto shadow-md hover:shadow-lg shadow-[#24aae1]/30 hover:shadow-[#1173bc]/40 transition-all duration-300 border-0 cursor-pointer"
                     >
                       <MessageCircle className="mr-2 h-3.5 w-3.5" />
                       Consultar
@@ -188,14 +186,13 @@ export function FeaturedProducts({ data }: ProductProps) {
 
           {/* Right side - Large featured product card (50% width) */}
           <div className="flex justify-center items-center relative">
-            <Card className="group rounded-[24px] border-[#E5E7EB] dark:border-white/10 shadow-xl hover:shadow-2xl transition-all bg-white dark:bg-[#0C0F39] w-full flex flex-col ">
+            <Card className="group rounded-3xl border-[#E5E7EB] shadow-xl hover:shadow-2xl transition-all bg-white w-full flex flex-col ">
               {/* Featured product image */}
-              <div className=" bg-gradient-to-br from-[#24aae1] to-[#24aae1]/80 rounded-xl flex items-center justify-center h-80">
-                {/* <div className="absolute inset-0 bg-gradient-to-br from-[#1D3DF8]/20 to-transparent"></div> */}
+              <div className=" bg-linear-to-br from-[#24aae1] to-[#24aae1]/80 rounded-xl flex items-center justify-center h-80">
                 <ImageWithFallback
                   src="/test-image.webp"
                   alt="test-image"
-                  className="w-[27rem] h-[27rem] object-cover group-hover:scale-105 transition-transform duration-500 absolute top-0 lg:top-1/4"
+                  className="w-108 h-108 object-cover group-hover:scale-105 transition-transform duration-500 absolute top-0 lg:top-1/4"
                   // width={100}
                   // height={100}
                 />

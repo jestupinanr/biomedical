@@ -32,12 +32,12 @@ export function Experience({ impact, projects }: ExperienceProps) {
     .map((key) => projects[key as keyof typeof projects]) as ProjectItem[];
 
   return (
-    <section className="py-24 bg-gray-50 dark:bg-[#0C0F39]">
+    <section className="py-24 bg-gray-50">
       {/* Abstract Biomedical Wave Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Wave Layer 1 */}
         <svg
-          className="absolute top-0 left-0 w-full h-full opacity-30 dark:opacity-20"
+          className="absolute top-0 left-0 w-full h-full opacity-30"
           preserveAspectRatio="none"
           viewBox="0 0 1440 800"
         >
@@ -61,7 +61,7 @@ export function Experience({ impact, projects }: ExperienceProps) {
 
         {/* Wave Layer 2 */}
         <svg
-          className="absolute bottom-0 right-0 w-full h-2/3 opacity-20 dark:opacity-15"
+          className="absolute bottom-0 right-0 w-full h-2/3 opacity-20"
           preserveAspectRatio="none"
           viewBox="0 0 1440 800"
         >
@@ -84,47 +84,43 @@ export function Experience({ impact, projects }: ExperienceProps) {
         </svg>
 
         {/* Floating Circles */}
-        <div className="absolute top-32 right-24 w-80 h-80 bg-gradient-to-br from-[#1173bc]/7 to-transparent rounded-full blur-3xl"></div>
-        <div className="absolute bottom-40 left-32 w-64 h-64 bg-gradient-to-tr from-[#24aae1]/6 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute top-32 right-24 w-80 h-80 bg-linear-to-br from-[#1173bc]/7 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute bottom-40 left-32 w-64 h-64 bg-linear-to-tr from-[#24aae1]/6 to-transparent rounded-full blur-3xl"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-6">
         {/* Stats Section */}
         <div className="mb-24">
           <div className="text-center mb-16 relative">
-            <h2 className="mb-4 text-[#2f3092] dark:text-white">
-              {impact.main.title}
-            </h2>
-            <div className="inline-flex items-center gap-2 mb-4 px-6 py-2 bg-gradient-to-r from-[#24aae1]/10 via-[#1173bc]/10 to-[#2f3092]/10 backdrop-blur-sm rounded-full border border-[#24aae1]/20">
+            <h2 className="mb-4 text-[#2f3092]">{impact.main.title}</h2>
+            <div className="inline-flex items-center gap-2 mb-4 px-6 py-2 bg-linear-to-r from-[#24aae1]/10 via-[#1173bc]/10 to-[#2f3092]/10 backdrop-blur-sm rounded-full border border-[#24aae1]/20">
               <Droplets className="w-5 h-5 text-[#24aae1] hidden md:inline" />
               <span className="text-sm text-[#1173bc]">
                 {impact.main.description}
               </span>
             </div>
-            <div className="w-24 h-1 bg-gradient-to-r from-transparent via-[#24aae1] to-transparent mx-auto rounded-full"></div>
+            <div className="w-24 h-1 bg-linear-to-r from-transparent via-[#24aae1] to-transparent mx-auto rounded-full"></div>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {stats.map((stat, index) => (
               <Card
                 key={index}
-                className="text-center border-[#E5E7EB] dark:border-white/10 rounded-[24px] shadow-sm hover:shadow-lg transition-shadow bg-white dark:bg-[#0C0F39]"
+                className="text-center border-[#E5E7EB] rounded-3xl shadow-sm hover:shadow-lg transition-shadow bg-white"
               >
                 <CardHeader className="pb-4">
-                  <div className="w-20 h-20 bg-gradient-to-br from-[#24aae1] to-[#1173bc] rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg shadow-[#1D3DF8]/20">
+                  <div className="w-20 h-20 bg-linear-to-br from-[#24aae1] to-[#1173bc] rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg shadow-[#1D3DF8]/20">
                     <stat.icon className="h-10 w-10 text-white" />
                   </div>
-                  <div className="text-5xl text-[#2f3092]/80 mb-3 dark:text-white">
+                  <div className="text-5xl text-[#2f3092]/80 mb-3">
                     {stat.number}
                   </div>
-                  <CardTitle className="text-[#2f3092]/80 dark:text-white">
+                  <CardTitle className="text-[#2f3092]/80">
                     {stat.title}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-[#2f3092]/80 dark:text-white/65">
-                    {stat.description}
-                  </p>
+                  <p className="text-[#2f3092]/80">{stat.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -134,44 +130,36 @@ export function Experience({ impact, projects }: ExperienceProps) {
         {/* Projects Section */}
         <div>
           <div className="text-center mb-16 relative">
-            <h2 className="mb-4 text-[#2f3092] dark:text-white">
-              Proyectos destacados{" "}
-            </h2>
-            <div className="inline-flex items-center gap-2 mb-4 px-6 py-2 bg-gradient-to-r from-[#24aae1]/10 via-[#1173bc]/10 to-[#2f3092]/10 backdrop-blur-sm rounded-full border border-[#24aae1]/20">
+            <h2 className="mb-4 text-[#2f3092]">Proyectos destacados </h2>
+            <div className="inline-flex items-center gap-2 mb-4 px-6 py-2 bg-linear-to-r from-[#24aae1]/10 via-[#1173bc]/10 to-[#2f3092]/10 backdrop-blur-sm rounded-full border border-[#24aae1]/20">
               <FolderOpenDot className="w-5 h-5 text-[#24aae1] hidden md:inline" />
               <span className="text-sm text-[#1173bc]">
                 Historias de éxito de nuestras colaboraciones con organizaciones
                 líderes del sector salud.
               </span>
             </div>
-            <div className="w-24 h-1 bg-gradient-to-r from-transparent via-[#24aae1] to-transparent mx-auto rounded-full"></div>
+            <div className="w-24 h-1 bg-linear-to-r from-transparent via-[#24aae1] to-transparent mx-auto rounded-full"></div>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
             {projectsArray.map((project, index) => (
               <Card
                 key={index}
-                className="group overflow-hidden rounded-[24px] border-[#E5E7EB] dark:border-white/10 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1 bg-white dark:bg-[#0C0F39]"
+                className="group overflow-hidden rounded-3xl border-[#E5E7EB] shadow-sm hover:shadow-xl transition-all hover:-translate-y-1 bg-white"
               >
                 <div className="h-1.5 bg-[#2f3092]"></div>
                 <CardHeader className="pb-3">
-                  <CardTitle className="text-[#2f3092] dark:text-white">
+                  <CardTitle className="text-[#2f3092]">
                     {project.title}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div>
-                    <div className="text-sm text-[#6B7280] mb-1 dark:text-white/50">
-                      Client
-                    </div>
-                    <div className="text-[#2f3092] dark:text-white">
-                      {project.client}
-                    </div>
+                    <div className="text-sm text-[#6B7280] mb-1">Client</div>
+                    <div className="text-[#2f3092]">{project.client}</div>
                   </div>
                   <div>
-                    <div className="text-sm text-[#6B7280] mb-1 dark:text-white/50">
-                      Impact
-                    </div>
+                    <div className="text-sm text-[#6B7280] mb-1">Impact</div>
                     <div className="text-[#1D3DF8]">{project.impact}</div>
                   </div>
                 </CardContent>

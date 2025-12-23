@@ -1,8 +1,7 @@
 import { MiniBanner } from "@/components/server/common/MiniBanner";
 import { ShoppingCart } from "lucide-react";
 import ProductsList from "./components/ProductsList";
-import { HomeContent } from "@/types/home";
-import { ProductCompleteItem, ProductContent } from "@/types/product";
+import { ProductContent } from "@/types/product";
 
 const getData = async (): Promise<ProductContent> => {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
@@ -20,10 +19,12 @@ const getData = async (): Promise<ProductContent> => {
 export default async function Products() {
   const data = await getData();
 
-  const productsArray = Object.values(data.product);
+  const { main, ...products } = data.product;
+
+  const productsArray = Object.values(products);
 
   return (
-    <section className="bg-white dark:bg-[#0C0F39] min-h-screen">
+    <section className="bg-white min-h-screen">
       {/* Mini Banner */}
       <MiniBanner
         title="Catalogo de Productos"
@@ -34,14 +35,11 @@ export default async function Products() {
       <div className="py-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 mb-4 px-6 py-2 bg-gradient-to-r from-[#24aae1]/10 via-[#1173bc]/10 to-[#2f3092]/10 backdrop-blur-sm rounded-full border border-[#24aae1]/20">
+            <div className="inline-flex items-center gap-2 mb-4 px-6 py-2 bg-linear-to-r from-[#24aae1]/10 via-[#1173bc]/10 to-[#2f3092]/10 backdrop-blur-sm rounded-full border border-[#24aae1]/20">
               <ShoppingCart className="w-5 h-5 text-[#24aae1]" />
-              <p className="text-sm text-[#1173bc]">
-                Explore nuestra gama completa de equipos y soluciones biomédicas
-                para centros sanitarios.
-              </p>
+              <p className="text-sm text-[#1173bc]">{main.description}</p>
             </div>
-            <div className="w-24 h-1 bg-gradient-to-r from-transparent via-[#1173bc] to-transparent mx-auto rounded-full mt-6"></div>
+            <div className="w-24 h-1 bg-linear-to-r from-transparent via-[#1173bc] to-transparent mx-auto rounded-full mt-6"></div>
           </div>
 
           <ProductsList catalogProducts={productsArray} />

@@ -1,5 +1,10 @@
 export interface ProductContent {
-  product: Record<string, ProductCompleteItem>;
+  product: {
+    main: {
+      description: string;
+    };
+    [key: string]: ProductCompleteItem;
+  };
 }
 export interface ProductCompleteItem {
   title: string;

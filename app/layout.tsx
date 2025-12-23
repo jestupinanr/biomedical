@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/client/layout/Navbar";
 import { Footer } from "@/components/server/layout/Footer";
@@ -14,6 +14,12 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const poppins = Poppins({
+  weight: "400",
+  variable: "--font-poppins",
   subsets: ["latin"],
 });
 
@@ -47,7 +53,7 @@ export default async function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased scroll-smooth`}
+        className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} font-poppins antialiased scroll-smooth`}
       >
         <Navbar data={data.config} />
         <main>{children}</main>
