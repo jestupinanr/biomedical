@@ -141,6 +141,7 @@ export interface Visit {
   };
   email: {
     title: string;
+    title_2: string;
   };
   schedule: {
     normal: string;

@@ -85,7 +85,7 @@ export function Location({ data }: LocationProps) {
           <Card className="rounded-3xl overflow-hidden shadow-sm border-[#E5E7EB] bg-white">
             <div className="aspect-4/3 bg-linear-to-br from-gray-100 to-gray-200 relative flex items-center justify-center">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.576771632443!2d-74.11501032467258!3d4.669287841928387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9b7795178f71%3A0xb2985739aa7e11b1!2sBIOMEDICAL%20GROUP%20BOGOTA!5e0!3m2!1ses!2sco!4v1765408238568!5m2!1ses!2sco"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10171.953660190055!2d-74.06421990934408!3d4.670407173117269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9af7442d681d%3A0x4b1e9d2298ff5971!2zQ3JhIDI3ICMgODItMTQsIEJhcnJpb3MgVW5pZG9zLCBCb2dvdMOhLCBELkMuLCBCb2dvdMOhLCBCb2dvdMOhLCBELkMu!5e0!3m2!1ses!2sco!4v1766513427660!5m2!1ses!2sco"
                 width="100%"
                 height="100%"
                 allowFullScreen
@@ -138,6 +138,9 @@ export function Location({ data }: LocationProps) {
                   <div>
                     <div className="text-sm text-white/70 mb-1">Correo</div>
                     <div className="text-white text-sm">{data.email.title}</div>
+                    <div className="text-white text-sm">
+                      {data.email.title_2}
+                    </div>
                   </div>
                 </div>
               </CardContent>
