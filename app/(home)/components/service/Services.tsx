@@ -14,6 +14,7 @@ import {
   Hammer,
   Monitor,
   BookUser,
+  Activity,
 } from "lucide-react";
 import { Services as ServicesType } from "@/types/home";
 import { ImageWithFallback } from "@/components/client/common/ImageWithFallback";
@@ -24,19 +25,22 @@ const icons = {
   item_2: Settings,
   item_3: Package,
   item_4: Plug,
-  item_5: GraduationCap,
-  item_6: Hammer,
+  item_5: Hammer,
+  item_6: GraduationCap,
+  item_7: Activity,
 };
 const images = {
   item_1:
-    "https://images.unsplash.com/photo-1490223966554-5de0fd551b91?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtZWRpY2FsJTIwZXF1aXBtZW50JTIwbWFpbnRlbmFuY2UlMjB0ZWNobmljaWFufGVufDF8fHx8MTc2NTY2NTYyNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    "https://res.cloudinary.com/dbfwjohjx/image/upload/v1767627565/preventivo-1_mzbxgg.jpg",
   item_2:
-    "https://images.unsplash.com/photo-1661078483043-6a586b684f17?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiaW9tZWRpY2FsJTIwZXF1aXBtZW50JTIwcmVwYWlyfGVufDF8fHx8MTc2NTY2NTYyNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    "https://res.cloudinary.com/dbfwjohjx/image/upload/v1767627566/correctivo-1_g0pwhm.jpg",
   item_3: "https://images.unsplash.com/photo-1603398938378-e54eab446dde",
   item_4: "https://images.unsplash.com/photo-1581090700227-1e37b190418e",
-  item_5: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655",
-  item_6:
+  item_5:
     "https://images.unsplash.com/photo-1763770472374-b68e6729a46f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNobmljYWwlMjBzdXBwb3J0JTIwdG9vbHN8ZW58MXx8fHwxNzY1NjY1NjI3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  item_6: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655",
+  item_7:
+    "https://images.unsplash.com/photo-1696258686263-9f42a5e34371?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcmVkaWN0aXZlJTIwbWFpbnRlbmFuY2UlMjB0ZWNobm9sb2d5fGVufDF8fHx8MTc2NzYyNTQ1NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
 };
 
 interface ServicesProps {
@@ -60,7 +64,7 @@ export function Services({ data }: ServicesProps) {
   });
 
   return (
-    <section className="py-24 bg-white" id="services">
+    <section className="py-28 bg-white" id="services">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Wave Layer 1 */}
         <svg
@@ -139,7 +143,7 @@ export function Services({ data }: ServicesProps) {
                 <img
                   src={service.imageUrl}
                   alt={service.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
                 />
 
                 {/* Gradient Overlay */}

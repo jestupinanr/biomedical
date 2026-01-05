@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Poppins } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/client/layout/Navbar";
 import { Footer } from "@/components/server/layout/Footer";
@@ -7,18 +7,8 @@ import { FloatingWhatsApp } from "@/components/client/layout/FloatingWhatsapp";
 import { ConfigContent } from "@/types/general";
 import { headers } from "next/headers";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 const poppins = Poppins({
-  weight: "400",
+  weight: ["400", "500", "600", "700"],
   variable: "--font-poppins",
   subsets: ["latin"],
 });
@@ -52,9 +42,7 @@ export default async function RootLayout({
   const data = await getData();
   return (
     <html lang="es">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} font-poppins antialiased scroll-smooth`}
-      >
+      <body className={`${poppins.variable} antialiased scroll-smooth`}>
         <Navbar data={data.config} />
         <main>{children}</main>
         <Footer data={data.footer} navbarData={data.config} />

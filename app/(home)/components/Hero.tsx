@@ -6,8 +6,18 @@ interface HeroProps {
 export function Hero({ data }: HeroProps) {
   return (
     <section className="relative bg-white bg-linear-to-br from-[#2f3092] to-[#1173bc] text-white overflow-hidden">
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: `url(/hero-image.jpeg)`,
+        }}
+      ></div>
+
+      {/* /* Dark overlay for text readability  */}
+      <div className="absolute inset-0 bg-linear-to-r from-[#2f3092]/95 via-[#2f3092]/85 to-[#1173bc]/90 opacity-50"></div>
+
       {/* Biomedical pattern overlay */}
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-[0.04] pointer-events-none">
         <div
           className="absolute inset-0"
           style={{
@@ -18,18 +28,12 @@ export function Hero({ data }: HeroProps) {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6 py-32 lg:py-40">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Logo with glow */}
-          {/* <div className="mb-8 inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm px-6 py-3 rounded-2xl border border-white/20 shadow-[0_0_30px_rgba(36,170,225,0.3)]"> */}
-          {/* <div className="w-12 h-12 bg-gradient-to-br from-[#24aae1] to-[#1173bc] rounded-xl flex items-center justify-center shadow-lg shadow-[#24aae1]/50">
-              <span className="text-white text-lg">BE</span>
-            </div>
-            <span className="text-xl">Biomedical Endowment</span> */}
-          {/* </div> */}
-
+        <div className="max-w-5xl mx-auto text-center">
           {/* Hero content */}
-          <h1 className="mb-6 text-5xl lg:text-7xl">{data.main.hero_tag}</h1>
-          <p className="mb-10 text-xl lg:text-2xl text-white/70 max-w-3xl mx-auto">
+          <h1 className="mb-6 text-5xl lg:text-7xl font-semibold tracking-wide drop-shadow-[0_6px_30px_rgba(0,0,0,0.6)]">
+            {data.main.hero_tag}
+          </h1>
+          <p className="text-xl lg:text-2xl text-white/80 max-w-3xl mx-auto drop-shadow-[0_4px_16px_rgba(0,0,0,0.45)] font-medium">
             {data.main.subtitle}
           </p>
         </div>
