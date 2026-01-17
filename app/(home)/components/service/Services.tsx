@@ -38,7 +38,8 @@ const images = {
   item_4: "https://images.unsplash.com/photo-1581090700227-1e37b190418e",
   item_5:
     "https://images.unsplash.com/photo-1763770472374-b68e6729a46f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNobmljYWwlMjBzdXBwb3J0JTIwdG9vbHN8ZW58MXx8fHwxNzY1NjY1NjI3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  item_6: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655",
+  item_6:
+    "https://res.cloudinary.com/dbfwjohjx/image/upload/v1768684424/capacitacion_vjvtrh.jpg",
   item_7:
     "https://images.unsplash.com/photo-1696258686263-9f42a5e34371?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcmVkaWN0aXZlJTIwbWFpbnRlbmFuY2UlMjB0ZWNobm9sb2d5fGVufDF8fHx8MTc2NzYyNTQ1NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
 };
@@ -49,7 +50,7 @@ interface ServicesProps {
 
 export function Services({ data }: ServicesProps) {
   const keys = Object.keys(data).filter(
-    (key) => key !== "main" && key !== "software"
+    (key) => key !== "main" && key !== "software" && key !== "warranty"
   );
 
   const services = keys.map((key) => {
@@ -64,7 +65,7 @@ export function Services({ data }: ServicesProps) {
   });
 
   return (
-    <section className="py-28 bg-white" id="services">
+    <section className="py-16 bg-white" id="services">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Wave Layer 1 */}
         <svg
@@ -214,6 +215,26 @@ export function Services({ data }: ServicesProps) {
             </div>
           </div>
         </Card>
+        {/* Trust & Expertise Statement */}
+        <div className="my-16 max-w-7xl mx-auto ">
+          <div className="relative bg-linear-to-br from-[#2f3092]/5 via-[#1173bc]/5 to-[#24aae1]/5  rounded-4xl p-10 md:p-12 border border-[#24aae1]/20  backdrop-blur-sm">
+            {/* Decorative accent line */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-1 bg-linear-to-r from-transparent via-[#24aae1] to-transparent rounded-full"></div>
+
+            <div className="space-y-6 text-center">
+              <p className="text-[#2f3092] text-sm leading-relaxed">
+                {data.warranty.title}
+              </p>
+              <p className="text-[#2f3092] text-sm leading-relaxed">
+                {data.warranty.description}
+              </p>
+            </div>
+
+            {/* Decorative gradient orbs */}
+            <div className="absolute -top-10 -right-10 w-32 h-32 bg-linear-to-br from-[#24aae1]/10 to-transparent rounded-full blur-2xl pointer-events-none"></div>
+            <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-linear-to-tr from-[#1173bc]/10 to-transparent rounded-full blur-2xl pointer-events-none"></div>
+          </div>
+        </div>
       </div>
     </section>
   );

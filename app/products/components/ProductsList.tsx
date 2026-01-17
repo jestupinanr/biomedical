@@ -53,13 +53,15 @@ export default function ProductsList({ catalogProducts }: ProductsListProps) {
                 <div className="absolute inset-0 bg-linear-to-t from-white/90 via-transparent to-transparent"></div>
 
                 {/* Category Pill - Internal */}
-                <div className="absolute bottom-0 left-1 ">
-                  <div className="px-3 py-1 bg-white/95 backdrop-blur-md rounded-full border border-[#24aae1]/30 shadow-md">
-                    <span className="text-xs text-[#1173bc] ">
-                      {product.category}
-                    </span>
+                {product.category && (
+                  <div className="absolute bottom-0 left-1 ">
+                    <div className="px-3 py-1 bg-white/95 backdrop-blur-md rounded-full border border-[#24aae1]/30 shadow-md">
+                      <span className="text-xs text-[#1173bc] ">
+                        {product.category}
+                      </span>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
 

@@ -5,7 +5,12 @@ import {
   CardHeader,
   CardTitle,
 } from "../../../components/server/common/Card";
-import { ShoppingCart, MessageCircle, Sparkles } from "lucide-react";
+import {
+  ShoppingCart,
+  MessageCircle,
+  Sparkles,
+  ArrowRight,
+} from "lucide-react";
 import { Button } from "@/components/client/common/Button";
 import { Badge } from "@/components/server/common/Badge";
 import { ImageWithFallback } from "@/components/client/common/ImageWithFallback";
@@ -154,13 +159,15 @@ export function FeaturedProducts({ data }: ProductProps) {
                       <div className="absolute inset-0 bg-linear-to-t from-white/90 via-transparent to-transparent"></div>
 
                       {/* Category Pill - Internal */}
-                      <div className="absolute bottom-0 left-1 ">
-                        <div className="px-3 py-1 bg-white/95 backdrop-blur-md rounded-full border border-[#24aae1]/30 shadow-md">
-                          <span className="text-[10px] text-[#1173bc] sm:text-xs">
-                            {product.category}
-                          </span>
+                      {product.category && (
+                        <div className="absolute bottom-0 left-1 ">
+                          <div className="px-3 py-1 bg-white/95 backdrop-blur-md rounded-full border border-[#24aae1]/30 shadow-md">
+                            <span className="text-[10px] text-[#1173bc] sm:text-xs">
+                              {product.category}
+                            </span>
+                          </div>
                         </div>
-                      </div>
+                      )}
                     </div>
                   </div>
 
@@ -199,6 +206,21 @@ export function FeaturedProducts({ data }: ProductProps) {
               </div>
             </Card>
           </div>
+        </div>
+        {/* Show More Button */}
+        <div className="mt-12 text-center">
+          <Button
+            onClick={() => {
+              const catalogSection = document.getElementById("product-catalog");
+              if (catalogSection) {
+                catalogSection.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
+            className="bg-white dark:bg-[#2f3092] text-[#1173bc] border-2 border-[#1173bc] hover:bg-[#1173bc] hover:text-white rounded-full px-10 py-6 shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center gap-2 cursor-pointer"
+          >
+            <span>Ver más</span>
+            <ArrowRight className="h-5 w-5" />
+          </Button>
         </div>
       </div>
     </section>

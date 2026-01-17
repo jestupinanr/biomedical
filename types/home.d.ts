@@ -39,6 +39,10 @@ export interface Services {
     description: string;
     botton: string;
   };
+  warranty: {
+    title: string;
+    description: string;
+  };
 }
 
 export interface About {
