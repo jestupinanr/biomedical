@@ -1,4 +1,10 @@
+import AnimatedSection from "@/components/client/layout/AnimatedSection";
 import { Hero as HeroType } from "@/types/home";
+import {
+  fadeIn,
+  viewportConfigSection,
+  zoomOutBackground,
+} from "@/utils/animations";
 
 interface HeroProps {
   data: HeroType;
@@ -6,12 +12,15 @@ interface HeroProps {
 export function Hero({ data }: HeroProps) {
   return (
     <section className="relative bg-white bg-linear-to-br from-[#2f3092] to-[#1173bc] text-white overflow-hidden">
-      <div
-        className="absolute inset-0 bg-cover bg-center"
+      <AnimatedSection
+        className="absolute inset-0 bg-cover bg-center will-change-transform"
         style={{
           backgroundImage: `url(/hero-image.jpeg)`,
         }}
-      ></div>
+        variants={zoomOutBackground(6)}
+        initial="hidden"
+        animate="visible"
+      ></AnimatedSection>
 
       {/* /* Dark overlay for text readability  */}
       <div className="absolute inset-0 bg-linear-to-r from-[#2f3092]/95 via-[#2f3092]/85 to-[#1173bc]/90 opacity-50"></div>
@@ -28,7 +37,13 @@ export function Hero({ data }: HeroProps) {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6 py-32 lg:py-40">
-        <div className="max-w-5xl mx-auto text-center">
+        <AnimatedSection
+          className="max-w-5xl mx-auto text-center"
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfigSection}
+          variants={fadeIn}
+        >
           {/* Hero content */}
           <h1 className="mb-6 text-5xl lg:text-7xl font-semibold tracking-wide drop-shadow-[0_6px_30px_rgba(0,0,0,0.6)]">
             {data.main.hero_tag}
@@ -36,7 +51,7 @@ export function Hero({ data }: HeroProps) {
           <p className="text-xl lg:text-2xl text-white/80 max-w-3xl mx-auto drop-shadow-[0_4px_16px_rgba(0,0,0,0.45)] font-medium">
             {data.main.subtitle}
           </p>
-        </div>
+        </AnimatedSection>
 
         {/* Decorative gradient orbs */}
         <div className="absolute top-1/4 right-10 w-96 h-96 bg-[#24aae1]/30 rounded-full blur-3xl"></div>

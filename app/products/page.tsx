@@ -26,6 +26,13 @@ export default async function Products() {
   const { main, ...products } = data.product;
 
   const productsArray = Object.values(products);
+  const categories = productsArray
+    .map((product) => product.category)
+    .filter(
+      (category, index, categories) => categories.indexOf(category) === index,
+    );
+
+  categories.unshift("TODOS");
 
   return (
     <section className="bg-white min-h-screen">
@@ -46,7 +53,10 @@ export default async function Products() {
             <div className="w-24 h-1 bg-linear-to-r from-transparent via-[#1173bc] to-transparent mx-auto rounded-full mt-6"></div>
           </div>
 
-          <ProductsList catalogProducts={productsArray} />
+          <ProductsList
+            catalogProducts={productsArray}
+            categories={categories}
+          />
         </div>
       </div>
     </section>

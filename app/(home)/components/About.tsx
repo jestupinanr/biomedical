@@ -1,15 +1,13 @@
+import { ImageWithFallback } from "@/components/client/common/ImageWithFallback";
+import AnimatedSection from "@/components/client/layout/AnimatedSection";
 import { About as AboutType } from "@/types/home";
-import { CheckCircle2 } from "lucide-react";
+import { fadeInUp, viewportConfig } from "@/utils/animations";
 
 interface AboutProps {
   data: AboutType;
 }
 
 export function About({ data }: AboutProps) {
-  const highlights = Object.keys(data.main)
-    .filter((key) => key.includes("item_"))
-    .map((key) => data.main[key as keyof typeof data.main]);
-
   return (
     <section className="py-24 bg-white relative overflow-hidden" id="about">
       {/* Abstract Biomedical Wave Background */}
@@ -61,13 +59,26 @@ export function About({ data }: AboutProps) {
         <div className="absolute bottom-20 left-20 w-80 h-80 bg-linear-to-tr from-[#24aae1]/5 to-transparent rounded-full blur-3xl"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <AnimatedSection
+        className="max-w-7xl mx-auto px-6 relative z-10"
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportConfig}
+        variants={fadeInUp()}
+      >
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Image */}
           <div className="relative order-2 lg:order-1">
             <div className="aspect-4/3 bg-linear-to-br from-[#2f3092] to-[#1173bc] rounded-3xl overflow-hidden shadow-2xl relative">
+              <ImageWithFallback
+                src={
+                  "https://res.cloudinary.com/dbfwjohjx/image/upload/v1769141673/about_us_pquxsf.jpg"
+                }
+                alt={"about us"}
+                className="w-full h-full object-cover object-center"
+              />
               {/* Gradient overlay - darker in dark mode */}
-              <div className="absolute inset-0 bg-linear-to-br from-[#24aae1]/40 to-transparent"></div>
+              {/* <div className="absolute inset-0 bg-linear-to-br from-[#24aae1]/40 to-transparent"></div>
               <div className="absolute inset-0 flex items-center justify-center text-white/20">
                 <svg
                   className="w-40 h-40"
@@ -76,7 +87,7 @@ export function About({ data }: AboutProps) {
                 >
                   <path d="M19.5 3h-15A1.5 1.5 0 003 4.5v15A1.5 1.5 0 004.5 21h15a1.5 1.5 0 001.5-1.5v-15A1.5 1.5 0 0019.5 3zM12 7.5a2.5 2.5 0 110 5 2.5 2.5 0 010-5zm0 10c-2.07 0-3.88-.84-5-2.19a6.48 6.48 0 0110 0c-1.12 1.35-2.93 2.19-5 2.19z" />
                 </svg>
-              </div>
+              </div> */}
             </div>
             {/* Decorative accent */}
             <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-[#24aae1]/10 rounded-3xl -z-10"></div>
@@ -95,7 +106,7 @@ export function About({ data }: AboutProps) {
               <p className="mb-6 text-[#2f3092]/80">{data.main.paragraph_2}</p>
               <p className="mb-8 text-[#2f3092]/80">{data.main.paragraph_3}</p>
 
-              <div className="space-y-4">
+              {/* <div className="space-y-4">
                 {highlights.map((highlight, index) => (
                   <div key={index} className="flex items-start gap-3">
                     <div className="w-6 h-6 bg-[#24aae1] rounded-full flex items-center justify-center shrink-0 mt-0.5">
@@ -104,11 +115,11 @@ export function About({ data }: AboutProps) {
                     <span className="text-[#2f3092]">{highlight}</span>
                   </div>
                 ))}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
-      </div>
+      </AnimatedSection>
     </section>
   );
 }

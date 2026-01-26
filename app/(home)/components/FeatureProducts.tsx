@@ -15,6 +15,15 @@ import { Button } from "@/components/client/common/Button";
 import { Badge } from "@/components/server/common/Badge";
 import { ImageWithFallback } from "@/components/client/common/ImageWithFallback";
 import { ProductItem, Products as ProductsType } from "@/types/home";
+import AnimatedSection from "@/components/client/layout/AnimatedSection";
+import {
+  fadeIn,
+  fadeInLeft,
+  fadeInRight,
+  fadeInUp,
+  viewportConfig,
+  viewportConfigSection,
+} from "@/utils/animations";
 
 interface ProductProps {
   data: ProductsType;
@@ -23,7 +32,7 @@ interface ProductProps {
 export function FeaturedProducts({ data }: ProductProps) {
   const handleWhatsAppClick = (productName: string) => {
     const message = encodeURIComponent(
-      `Hi, I'm interested in the ${productName}. Could you please provide pricing information?`
+      `Hi, I'm interested in the ${productName}. Could you please provide pricing information?`,
     );
     window.open(`https://wa.me/1234567890?text=${message}`, "_blank");
   };
@@ -115,23 +124,43 @@ export function FeaturedProducts({ data }: ProductProps) {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        {/* Header with Fluid Accent */}
-        <div className="text-center mb-16 relative">
-          <h2 className="mb-4 text-[#2f3092]">{data.main.title}</h2>
-          <div className="inline-flex items-center gap-2 mb-4 px-6 py-2 bg-linear-to-r from-[#24aae1]/10 via-[#1173bc]/10 to-[#2f3092]/10 backdrop-blur-sm rounded-full border border-[#24aae1]/20">
-            <ShoppingCart className="w-5 h-5 text-[#24aae1] hidden md:inline" />
-            <span className="text-sm text-[#1173bc]">
-              {data.main.description}
-            </span>
+        <AnimatedSection
+          className="text-center mb-16 relative"
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfigSection}
+          variants={fadeIn}
+        >
+          {/* Header with Fluid Accent */}
+          <div className="text-center mb-16 relative">
+            <h2 className="mb-4 text-[#2f3092] text-2xl font-bold">
+              {data.main.title}
+            </h2>
+            <div className="inline-flex items-center gap-2 mb-4 px-6 py-2 bg-linear-to-r from-[#24aae1]/10 via-[#1173bc]/10 to-[#2f3092]/10 backdrop-blur-sm rounded-full border border-[#24aae1]/20">
+              <ShoppingCart className="w-5 h-5 text-[#24aae1] hidden md:inline" />
+              <span className="text-sm text-[#1173bc]">
+                {data.main.description}
+              </span>
+            </div>
+            <div className="w-24 h-1 bg-linear-to-r from-transparent via-[#24aae1] to-transparent mx-auto rounded-full"></div>
           </div>
-          <div className="w-24 h-1 bg-linear-to-r from-transparent via-[#24aae1] to-transparent mx-auto rounded-full"></div>
-        </div>
+        </AnimatedSection>
 
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Left side - 2x2 grid of product cards */}
-          <div className="grid grid-cols-2 gap-1 md:gap-6">
+          <AnimatedSection
+            className="grid grid-cols-2 gap-1 md:gap-6"
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={fadeInLeft(5)}
+          >
             {products.map((product, index) => (
-              <div key={`${product.title} ${index}`} className="relative group">
+              <AnimatedSection
+                key={`${product.title} ${index}`}
+                className="relative group"
+                variants={fadeInLeft(5)}
+              >
                 <Card className="relative overflow-hidden rounded-4xl border border-[#E5E7EB]/50 shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:shadow-[0_12px_35px_rgb(0,0,0,0.12)] hover:border-[#24aae1]/40 transition-all duration-300 bg-white backdrop-blur-md flex flex-col h-full">
                   {/* Offer Badge - Organic Shape */}
                   {product.offer.toLocaleLowerCase() === "si" && (
@@ -160,7 +189,7 @@ export function FeaturedProducts({ data }: ProductProps) {
 
                       {/* Category Pill - Internal */}
                       {product.category && (
-                        <div className="absolute bottom-0 left-1 ">
+                        <div className="absolute bottom-1 left-1 ">
                           <div className="px-3 py-1 bg-white/95 backdrop-blur-md rounded-full border border-[#24aae1]/30 shadow-md">
                             <span className="text-[10px] text-[#1173bc] sm:text-xs">
                               {product.category}
@@ -187,12 +216,19 @@ export function FeaturedProducts({ data }: ProductProps) {
                     </Button>
                   </CardContent>
                 </Card>
-              </div>
+              </AnimatedSection>
             ))}
-          </div>
+          </AnimatedSection>
 
           {/* Right side - Large featured product card (50% width) */}
-          <div className="flex justify-center items-center relative">
+          <AnimatedSection
+            className="flex justify-center items-center relative"
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={fadeInRight(5)}
+          >
+            {/* <div className="flex justify-center items-center relative"> */}
             <Card className="group rounded-3xl border-[#E5E7EB] shadow-xl hover:shadow-2xl transition-all bg-white w-full flex flex-col ">
               {/* Featured product image */}
               <div className=" bg-linear-to-br from-[#24aae1] to-[#24aae1]/80 rounded-xl flex items-center justify-center h-80">
@@ -205,10 +241,17 @@ export function FeaturedProducts({ data }: ProductProps) {
                 />
               </div>
             </Card>
-          </div>
+            {/* </div> */}
+          </AnimatedSection>
         </div>
         {/* Show More Button */}
-        <div className="mt-12 text-center">
+        <AnimatedSection
+          className="mt-12 text-center"
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+          variants={fadeInUp()}
+        >
           <Button
             onClick={() => {
               const catalogSection = document.getElementById("product-catalog");
@@ -216,12 +259,12 @@ export function FeaturedProducts({ data }: ProductProps) {
                 catalogSection.scrollIntoView({ behavior: "smooth" });
               }
             }}
-            className="bg-white dark:bg-[#2f3092] text-[#1173bc] border-2 border-[#1173bc] hover:bg-[#1173bc] hover:text-white rounded-full px-10 py-6 shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center gap-2 cursor-pointer"
+            className="bg-white text-[#1173bc] border-2 border-[#1173bc] hover:bg-[#1173bc] hover:text-white rounded-full px-10 py-6 shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center gap-2 cursor-pointer"
           >
-            <span>Ver más</span>
+            <span>Ver más productos</span>
             <ArrowRight className="h-5 w-5" />
           </Button>
-        </div>
+        </AnimatedSection>
       </div>
     </section>
   );

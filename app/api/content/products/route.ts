@@ -7,7 +7,7 @@ export async function GET() {
     // Obtener los datos del sheet
     const values = await getSheetData(
       process.env.GOOGLE_SHEETS_DOCUMENT_ID!,
-      "Productos!A1:Z999"
+      "Productos!A1:D",
     );
 
     const rows = values.values;

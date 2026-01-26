@@ -19,6 +19,14 @@ import {
 import { Services as ServicesType } from "@/types/home";
 import { ImageWithFallback } from "@/components/client/common/ImageWithFallback";
 import ButtonSoftware from "./components/ButtonSoftware";
+import {
+  fadeIn,
+  fadeInUp,
+  staggerContainer,
+  viewportConfig,
+  viewportConfigSection,
+} from "@/utils/animations";
+import AnimatedSection from "@/components/client/layout/AnimatedSection";
 
 const icons = {
   item_1: Wrench,
@@ -121,102 +129,138 @@ export function Services({ data }: ServicesProps) {
       </div>
 
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16 relative">
-          <h2 className="mb-4 text-[#2f3092]">{data.main.title}</h2>
-          <div className="inline-flex items-center gap-2 mb-4 px-6 py-2 bg-linear-to-r from-[#24aae1]/10 via-[#1173bc]/10 to-[#2f3092]/10 backdrop-blur-sm rounded-full border border-[#24aae1]/20">
-            <BookUser className="w-5 h-5 text-[#24aae1] hidden md:inline" />
-            <span className="text-sm text-[#1173bc]">
-              {data.main.description}
-            </span>
+        <AnimatedSection
+          className="text-center mb-16"
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfigSection}
+          variants={fadeIn}
+        >
+          <div className="text-center mb-16 relative">
+            <h2 className="mb-4 text-[#2f3092] text-2xl font-bold">
+              {data.main.title}
+            </h2>
+            <div className="inline-flex items-center gap-2 mb-4 px-6 py-2 bg-linear-to-r from-[#24aae1]/10 via-[#1173bc]/10 to-[#2f3092]/10 backdrop-blur-sm rounded-full border border-[#24aae1]/20">
+              <BookUser className="w-5 h-5 text-[#24aae1] hidden md:inline" />
+              <span className="text-sm text-[#1173bc]">
+                {data.main.description}
+              </span>
+            </div>
+            <div className="w-24 h-1 bg-linear-to-r from-transparent via-[#24aae1] to-transparent mx-auto rounded-full"></div>
           </div>
-          <div className="w-24 h-1 bg-linear-to-r from-transparent via-[#24aae1] to-transparent mx-auto rounded-full"></div>
-        </div>
+        </AnimatedSection>
 
         {/* Main 3x2 Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+        <AnimatedSection
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6"
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+          variants={staggerContainer}
+        >
           {services.map((service, index) => (
-            <Card
+            <AnimatedSection
               key={index}
-              className="group hover:shadow-xl transition-all duration-300 border-[#E5E7EB] rounded-3xl overflow-hidden hover:-translate-y-1 bg-white shadow-sm"
+              variants={fadeInUp(3)}
+              className="w-full h-full flex"
             >
-              {/* Image Header */}
-              <div className="relative h-48 overflow-hidden">
-                <img
-                  src={service.imageUrl}
-                  alt={service.title}
-                  className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
-                />
+              <Card
+                key={index}
+                className="group hover:shadow-xl transition-all duration-300 border-[#E5E7EB] rounded-3xl overflow-hidden hover:-translate-y-1 bg-white shadow-sm"
+              >
+                {/* Image Header */}
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={service.imageUrl}
+                    alt={service.title}
+                    className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
+                  />
 
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-linear-to-t from-[#0C0F39]/90 via-[#0C0F39]/40 to-transparent" />
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-linear-to-t from-[#0C0F39]/90 via-[#0C0F39]/40 to-transparent" />
 
-                {/* Icon Badge */}
-                <div className="absolute bottom-4 right-4 w-14 h-14 bg-linear-to-br from-[#24aae1] to-[#1173bc] rounded-xl flex items-center justify-center shadow-lg shadow-[#24aae1]/30 group-hover:scale-110 transition-transform">
-                  <service.icon className="h-7 w-7 text-white" />
+                  {/* Icon Badge */}
+                  <div className="absolute bottom-4 right-4 w-14 h-14 bg-linear-to-br from-[#24aae1] to-[#1173bc] rounded-xl flex items-center justify-center shadow-lg shadow-[#24aae1]/30 group-hover:scale-110 transition-transform">
+                    <service.icon className="h-7 w-7 text-white" />
+                  </div>
                 </div>
-              </div>
 
-              <CardHeader className="pb-3">
-                <CardTitle className="text-[#2f3092] ">
-                  {service.title}
-                </CardTitle>
-              </CardHeader>
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-[#2f3092] ">
+                    {service.title}
+                  </CardTitle>
+                </CardHeader>
 
-              <CardContent>
-                <p className="text-[#2f3092] leading-relaxed">
-                  {service.description}
-                </p>
-              </CardContent>
-            </Card>
+                <CardContent>
+                  <p className="text-[#2f3092] leading-relaxed">
+                    {service.description}
+                  </p>
+                </CardContent>
+              </Card>
+            </AnimatedSection>
           ))}
-        </div>
+        </AnimatedSection>
 
-        {/* Featured Full-Width Maintenance Software Card */}
-        <Card className="group hover:shadow-2xl transition-all duration-300 border-[#E5E7EB] rounded-3xl overflow-hidden bg-white shadow-xl relative">
-          <div className="grid md:grid-cols-2 gap-0">
-            {/* Image Side - Visual Story */}
-            <div className="relative h-64 md:h-auto overflow-hidden">
-              <ImageWithFallback
-                src="https://images.unsplash.com/photo-1645685491865-42a4fbbc9912?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2Z0d2FyZSUyMGRhc2hib2FyZCUyMG1lZGljYWx8ZW58MXx8fHwxNzY1NjY1NjI4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                alt={"Visual Story"}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-linear-to-r from-[#2f3092]/80 via-[#2f3092]/50 to-transparent md:from-transparent md:via-transparent md:to-transparent"></div>
+        <AnimatedSection
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+          variants={fadeInUp()}
+        >
+          {/* Featured Full-Width Maintenance Software Card */}
+          <Card className="group hover:shadow-2xl transition-all duration-300 border-[#E5E7EB] rounded-3xl overflow-hidden bg-white shadow-xl relative">
+            <div className="grid md:grid-cols-2 gap-0">
+              {/* Image Side - Visual Story */}
+              <div className="relative h-64 md:h-auto overflow-hidden">
+                <ImageWithFallback
+                  src="/samm_banner.jpeg"
+                  alt={"Visual Story"}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-linear-to-r from-[#2f3092]/80 via-[#2f3092]/50 to-transparent md:from-transparent md:via-transparent md:to-transparent"></div>
 
-              {/* Floating Icon Badge - visible on mobile */}
-              <div className="absolute top-6 left-6 md:hidden w-16 h-16 bg-linear-to-br from-[#24aae1] to-[#1173bc] rounded-2xl flex items-center justify-center shadow-lg shadow-[#24aae1]/30">
-                <Monitor className="h-8 w-8 text-white" />
-              </div>
-            </div>
-
-            {/* Content Side */}
-            <div className="relative bg-linear-to-br from-[#2f3092] to-[#1173bc] p-8 md:p-10 flex flex-col justify-center">
-              {/* Decorative elements */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
-              <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#24aae1]/20 rounded-full blur-2xl"></div>
-
-              <div className="relative z-10">
-                {/* Icon - hidden on mobile */}
-                <div className="hidden md:flex w-20 h-20 bg-white/10 backdrop-blur-sm rounded-2xl items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg">
-                  <Monitor className="h-10 w-10 text-white" />
+                {/* Floating Icon Badge - visible on mobile */}
+                <div className="absolute top-6 left-6 md:hidden w-16 h-16 bg-linear-to-br from-[#24aae1] to-[#1173bc] rounded-2xl flex items-center justify-center shadow-lg shadow-[#24aae1]/30">
+                  <Monitor className="h-8 w-8 text-white" />
                 </div>
+              </div>
 
-                <h3 className="mb-4 text-white text-3xl">
-                  {" "}
-                  {data.software.title}
-                </h3>
-                <p className="text-white/90 text-base leading-relaxed mb-6">
-                  {data.software.description}
-                </p>
+              {/* Content Side */}
+              <div className="relative bg-linear-to-br from-[#2f3092] to-[#1173bc] p-8 md:p-10 flex flex-col justify-center">
+                {/* Decorative elements */}
+                <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#24aae1]/20 rounded-full blur-2xl"></div>
 
-                <ButtonSoftware textButton={data.software.botton} />
+                <div className="relative z-10">
+                  {/* Icon - hidden on mobile */}
+                  <div className="hidden md:flex w-20 h-20 bg-white/10 backdrop-blur-sm rounded-2xl items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg">
+                    <Monitor className="h-10 w-10 text-white" />
+                  </div>
+
+                  <h3 className="mb-4 text-white text-3xl">
+                    {" "}
+                    {data.software.title}
+                  </h3>
+                  <p className="text-white/90 text-base leading-relaxed mb-6">
+                    {data.software.description}
+                  </p>
+
+                  <ButtonSoftware textButton={data.software.botton} />
+                </div>
               </div>
             </div>
-          </div>
-        </Card>
+          </Card>
+        </AnimatedSection>
+
         {/* Trust & Expertise Statement */}
-        <div className="my-16 max-w-7xl mx-auto ">
+        <AnimatedSection
+          className="my-16 max-w-4xl mx-auto"
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfig}
+          variants={fadeInUp()}
+        >
           <div className="relative bg-linear-to-br from-[#2f3092]/5 via-[#1173bc]/5 to-[#24aae1]/5  rounded-4xl p-10 md:p-12 border border-[#24aae1]/20  backdrop-blur-sm">
             {/* Decorative accent line */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-1 bg-linear-to-r from-transparent via-[#24aae1] to-transparent rounded-full"></div>
@@ -234,7 +278,7 @@ export function Services({ data }: ServicesProps) {
             <div className="absolute -top-10 -right-10 w-32 h-32 bg-linear-to-br from-[#24aae1]/10 to-transparent rounded-full blur-2xl pointer-events-none"></div>
             <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-linear-to-tr from-[#1173bc]/10 to-transparent rounded-full blur-2xl pointer-events-none"></div>
           </div>
-        </div>
+        </AnimatedSection>
       </div>
     </section>
   );

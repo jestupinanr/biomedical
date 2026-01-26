@@ -11,5 +11,6 @@ export interface ProductCompleteItem {
   category: string;
   offer: "si" | "no";
   image: string;
+  hover_image_url: string;
   description: string;
 }

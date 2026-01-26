@@ -6,6 +6,14 @@ import {
   CardTitle,
 } from "../../../components//server/common/Card";
 import { Visit } from "@/types/home";
+import AnimatedSection from "@/components/client/layout/AnimatedSection";
+import {
+  fadeIn,
+  fadeInLeft,
+  fadeInRight,
+  viewportConfig,
+  viewportConfigSection,
+} from "@/utils/animations";
 
 interface LocationProps {
   data: Visit;
@@ -69,8 +77,16 @@ export function Location({ data }: LocationProps) {
       </div>
 
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16 relative">
-          <h2 className="mb-4 text-[#2f3092]">{data.main.title}</h2>
+        <AnimatedSection
+          className="text-center mb-16 relative"
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportConfigSection}
+          variants={fadeIn}
+        >
+          <h2 className="mb-4 text-[#2f3092] text-2xl font-bold">
+            {data.main.title}
+          </h2>
           <div className="inline-flex items-center gap-2 mb-4 px-6 py-2 bg-linear-to-r from-[#24aae1]/10 via-[#1173bc]/10 to-[#2f3092]/10 backdrop-blur-sm rounded-full border border-[#24aae1]/20">
             <MapPin className="w-5 h-5 text-[#24aae1] hidden sm:block" />
             <span className="text-sm text-[#1173bc]">
@@ -78,30 +94,44 @@ export function Location({ data }: LocationProps) {
             </span>
           </div>
           <div className="w-24 h-1 bg-linear-to-r from-transparent via-[#24aae1] to-transparent mx-auto rounded-full"></div>
-        </div>
+        </AnimatedSection>
 
         <div className="grid lg:grid-cols-2 gap-6">
           {/* Map Card - Left side, large */}
-          <Card className="rounded-3xl overflow-hidden shadow-sm border-[#E5E7EB] bg-white">
-            <div className="aspect-4/3 bg-linear-to-br from-gray-100 to-gray-200 relative flex items-center justify-center">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10171.953660190055!2d-74.06421990934408!3d4.670407173117269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9af7442d681d%3A0x4b1e9d2298ff5971!2zQ3JhIDI3ICMgODItMTQsIEJhcnJpb3MgVW5pZG9zLCBCb2dvdMOhLCBELkMuLCBCb2dvdMOhLCBCb2dvdMOhLCBELkMu!5e0!3m2!1ses!2sco!4v1766513427660!5m2!1ses!2sco"
-                width="100%"
-                height="100%"
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </div>
-            <CardHeader>
-              <CardTitle className="text-[#0C0F39] text-center">
-                {data.maps.title}
-              </CardTitle>
-            </CardHeader>
-          </Card>
+          <AnimatedSection
+            className="w-full h-full"
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={fadeInLeft(5)}
+          >
+            <Card className="rounded-3xl overflow-hidden shadow-sm border-[#E5E7EB] bg-white h-full">
+              <div className="aspect-4/3 bg-linear-to-br from-gray-100 to-gray-200 relative flex items-center justify-center">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10171.953660190055!2d-74.06421990934408!3d4.670407173117269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9af7442d681d%3A0x4b1e9d2298ff5971!2zQ3JhIDI3ICMgODItMTQsIEJhcnJpb3MgVW5pZG9zLCBCb2dvdMOhLCBELkMuLCBCb2dvdMOhLCBCb2dvdMOhLCBELkMu!5e0!3m2!1ses!2sco!4v1766513427660!5m2!1ses!2sco"
+                  width="100%"
+                  height="100%"
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+              <CardHeader>
+                <CardTitle className="text-[#0C0F39] text-center">
+                  {data.maps.title}
+                </CardTitle>
+              </CardHeader>
+            </Card>
+          </AnimatedSection>
 
           {/* Right side - stacked cards */}
-          <div className="flex flex-col gap-6">
+          <AnimatedSection
+            className="flex flex-col gap-6"
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            variants={fadeInRight(5)}
+          >
             {/* Contact Information Card - Dark blue */}
             <Card className="rounded-3xl border-[#E5E7EB] shadow-sm bg-linear-to-br from-[#2f3092] to-[#1173bc] text-white flex-1">
               <CardHeader>
@@ -137,8 +167,10 @@ export function Location({ data }: LocationProps) {
                   </div>
                   <div>
                     <div className="text-sm text-white/70 mb-1">Correo</div>
-                    <div className="text-white text-sm">{data.email.title}</div>
-                    <div className="text-white text-sm">
+                    <div className="text-white text-xs sm:text-sm">
+                      {data.email.title}
+                    </div>
+                    <div className="text-white text-xs sm:text-sm">
                       {data.email.title_2}
                     </div>
                   </div>
@@ -171,7 +203,7 @@ export function Location({ data }: LocationProps) {
                 </div>
               </CardContent>
             </Card>
-          </div>
+          </AnimatedSection>
         </div>
       </div>
     </section>
