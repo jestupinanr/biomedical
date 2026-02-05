@@ -13,8 +13,8 @@ export function FloatingWhatsApp({ data }: FloatingWhatsAppProps) {
 
   const handleWhatsAppClick = () => {
     window.open(
-      `https://wa.me/1234567890?text=${data.main.init_message}`,
-      "_blank"
+      `https://wa.me/573213784799?text=${data.main.init_message}`,
+      "_blank",
     );
   };
 

@@ -32,7 +32,7 @@ export default async function Home() {
       <Services data={data.services} />
       <FeaturedProducts data={data.products} />
       <About data={data.about} />
-      <Experience impact={data.impact} projects={data.project} />
+      <Experience impact={data.impact} />
       <Location data={data.visit} />
     </div>
   );

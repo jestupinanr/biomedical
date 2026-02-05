@@ -1,13 +1,11 @@
 import { MiniBanner } from "@/components/server/common/MiniBanner";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "../../components/server/common/Card";
 import { GraduationCap, ShieldCheck } from "lucide-react";
 import { VideosContent } from "@/types/videos";
 import { headers } from "next/headers";
+import AnimatedSection from "@/components/client/layout/AnimatedSection";
+import { fadeInDown, viewportConfigSection } from "@/utils/animations";
+import VideoCard from "./components/VideoCard";
+import Link from "next/link";
 
 const getData = async (): Promise<VideosContent> => {
   const headersList = await headers();
@@ -43,47 +41,25 @@ export default async function HazloTuMismo() {
       <div className="py-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 mb-4 px-6 py-2 bg-linear-to-r from-[#24aae1]/10 via-[#1173bc]/10 to-[#2f3092]/10 backdrop-blur-sm rounded-full border border-[#24aae1]/20">
-              <GraduationCap className="w-5 h-5 text-[#24aae1]" />
-              <p className="text-sm text-[#1173bc]">{main.description}</p>
-            </div>
+            <AnimatedSection
+              className="text-center"
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportConfigSection}
+              variants={fadeInDown(3)}
+            >
+              <div className="inline-flex items-center gap-2 mb-4 px-6 py-2 bg-linear-to-r from-[#24aae1]/10 via-[#1173bc]/10 to-[#2f3092]/10 backdrop-blur-sm rounded-full border border-[#24aae1]/20">
+                <GraduationCap className="w-5 h-5 text-[#24aae1]" />
+                <p className="text-sm text-[#1173bc]">{main.description}</p>
+              </div>
+            </AnimatedSection>
 
             <div className="w-24 h-1 bg-linear-to-r from-transparent via-[#1173bc] to-transparent mx-auto rounded-full mt-6"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {videosArray.map((video, index) => (
-              <Card
-                key={`video-${video.title}-${index}`}
-                className="overflow-hidden rounded-3xl border-[#E5E7EB] hover:shadow-xl transition-all bg-white shadow-sm"
-              >
-                {/* YouTube Video Embed */}
-                <div
-                  className="relative w-full bg-black"
-                  style={{ paddingBottom: "56.25%" }}
-                >
-                  <iframe
-                    className="absolute top-0 left-0 w-full h-full"
-                    src={`https://www.youtube.com/embed/${video.videoId}`}
-                    title={video.title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                </div>
-
-                {/* Video Details */}
-                <CardHeader className="pb-3 px-6 pt-6">
-                  <CardTitle className="text-[#0C0F39]  text-xl leading-tight">
-                    {video.title}
-                  </CardTitle>
-                </CardHeader>
-
-                <CardContent className="px-6 pb-6 pt-0">
-                  <p className="text-[#0E0E0E] text-sm leading-relaxed">
-                    {video.description}
-                  </p>
-                </CardContent>
-              </Card>
+              <VideoCard key={`video-${index}`} video={video} />
             ))}
           </div>
 
@@ -100,12 +76,12 @@ export default async function HazloTuMismo() {
           </div>
           {/* Additional Help CTA */}
           <div className="mt-12 text-center">
-            <a
-              href="#contact"
+            <Link
+              href="/#contact"
               className="inline-flex items-center justify-center px-8 py-3 bg-[#24aae1] hover:bg-[#24aae1]/90 text-white rounded-lg transition-all shadow-lg shadow-[#1D3DF8]/30"
             >
               Contactar Soporte
-            </a>
+            </Link>
           </div>
         </div>
       </div>

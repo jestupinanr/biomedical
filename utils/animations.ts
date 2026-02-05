@@ -33,7 +33,10 @@ export const fadeInLeft = (duration: number = 0.6): Variants => ({
   },
 });
 
-export const fadeInRight = (duration: number = 0.6): Variants => ({
+export const fadeInRight = (
+  duration: number = 0.6,
+  delay: number = 0,
+): Variants => ({
   hidden: {
     opacity: 0,
     x: 30,
@@ -41,6 +44,22 @@ export const fadeInRight = (duration: number = 0.6): Variants => ({
   visible: {
     opacity: 1,
     x: 0,
+    transition: {
+      duration: duration,
+      ease: [0.25, 0.1, 0.25, 1],
+      delay: delay,
+    },
+  },
+});
+
+export const fadeInDown = (duration: number = 0.6): Variants => ({
+  hidden: {
+    opacity: 0,
+    y: -30,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
     transition: {
       duration: duration,
       ease: [0.25, 0.1, 0.25, 1],
@@ -124,6 +143,36 @@ export const zoomOutBackground = (duration: number = 2.5): Variants => ({
     opacity: 1,
     transition: {
       duration: duration,
+      ease: [0.25, 0.1, 0.25, 1],
+    },
+  },
+});
+
+export const typingReveal = (duration: number = 1.2): Variants => ({
+  hidden: {
+    clipPath: "inset(0 100% 0 0)",
+    opacity: 1,
+  },
+  visible: {
+    clipPath: "inset(0 0% 0 0)",
+    opacity: 1,
+    transition: {
+      duration,
+      ease: "linear",
+    },
+  },
+});
+
+export const titleReveal = (duration = 0.6): Variants => ({
+  hidden: {
+    opacity: 0,
+    y: 16,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration,
       ease: [0.25, 0.1, 0.25, 1],
     },
   },

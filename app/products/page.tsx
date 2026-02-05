@@ -3,6 +3,8 @@ import { ShoppingCart } from "lucide-react";
 import ProductsList from "./components/ProductsList";
 import { ProductContent } from "@/types/product";
 import { headers } from "next/headers";
+import AnimatedSection from "@/components/client/layout/AnimatedSection";
+import { fadeInDown, viewportConfigSection } from "@/utils/animations";
 
 const getData = async (): Promise<ProductContent> => {
   const headersList = await headers();
@@ -43,13 +45,22 @@ export default async function Products() {
       />
 
       {/* Content Section */}
-      <div className="py-24">
+
+      <div className="py-12">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 mb-4 px-6 py-2 bg-linear-to-r from-[#24aae1]/10 via-[#1173bc]/10 to-[#2f3092]/10 backdrop-blur-sm rounded-full border border-[#24aae1]/20">
-              <ShoppingCart className="w-5 h-5 text-[#24aae1]" />
-              <p className="text-sm text-[#1173bc]">{main.description}</p>
-            </div>
+            <AnimatedSection
+              className="text-center mb-16 relative"
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportConfigSection}
+              variants={fadeInDown(3)}
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-3 bg-linear-to-r from-[#24aae1]/10 via-[#1173bc]/10 to-[#2f3092]/10 backdrop-blur-sm rounded-4xl md:rounded-full border border-[#24aae1]/20">
+                <ShoppingCart className="w-8 h-8 text-[#24aae1]" />
+                <p className="text-sm text-[#1173bc]">{main.description}</p>
+              </div>
+            </AnimatedSection>
             <div className="w-24 h-1 bg-linear-to-r from-transparent via-[#1173bc] to-transparent mx-auto rounded-full mt-6"></div>
           </div>
 

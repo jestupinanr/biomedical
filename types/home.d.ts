@@ -37,6 +37,7 @@ export interface Services {
   software: {
     title: string;
     description: string;
+    description_2: string;
     botton: string;
   };
   warranty: {
@@ -78,7 +79,6 @@ export interface Products {
 }
 
 export interface ImpactItem {
-  number: string;
   title: string;
   description: string;
   icon?: ForwardRefExoticComponent<
@@ -94,38 +94,8 @@ export interface Impact {
   item_1: ImpactItem;
   item_2: ImpactItem;
   item_3: ImpactItem;
-}
-
-export interface ProjectItem {
-  title: string;
-  client: string;
-  impact: string;
-}
-
-export interface Projects {
-  main: {
-    title: string;
-    description: string;
-  };
-  item_1: ProjectItem;
-  item_2: ProjectItem;
-  item_3: ProjectItem;
-}
-
-export interface ProjectItem {
-  title: string;
-  client: string;
-  impact: string;
-}
-
-export interface Projects {
-  main: {
-    title: string;
-    description: string;
-  };
-  item_1: ProjectItem;
-  item_2: ProjectItem;
-  item_3: ProjectItem;
+  item_4: ImpactItem;
+  item_5: ImpactItem;
 }
 
 export interface Visit {

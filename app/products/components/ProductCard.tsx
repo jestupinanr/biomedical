@@ -63,7 +63,7 @@ const ProductCard = ({ product }: ProductProps) => {
             href={whatsappLink(product.title)}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center mt-auto mx-auto text-xs gap-2 px-5 py-2 my-2 bg-linear-to-r from-[#24aae1] to-[#1173bc] text-white shadow-md shadow-[#24aae1]/30 rounded-full hover:shadow-lg hover:shadow-[#1173bc]/30 transition-all duration-300 hover:-translate-y-0.5"
+            className="inline-flex items-center justify-center mt-auto mx-auto text-xs gap sm:gap-2 px-2 sm:px-5 py-2 my-2 bg-linear-to-r from-[#24aae1] to-[#1173bc] text-white shadow-md shadow-[#24aae1]/30 rounded-full hover:shadow-lg hover:shadow-[#1173bc]/30 transition-all duration-300 hover:-translate-y-0.5"
           >
             <MessageCircle className="mr-2 h-3.5 w-3.5" />
             Consultar

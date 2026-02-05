@@ -15,18 +15,19 @@ import {
   Monitor,
   BookUser,
   Activity,
+  ShieldCheck,
 } from "lucide-react";
 import { Services as ServicesType } from "@/types/home";
 import { ImageWithFallback } from "@/components/client/common/ImageWithFallback";
 import ButtonSoftware from "./components/ButtonSoftware";
 import {
-  fadeIn,
+  fadeInLeft,
+  fadeInRight,
   fadeInUp,
-  staggerContainer,
   viewportConfig,
-  viewportConfigSection,
 } from "@/utils/animations";
 import AnimatedSection from "@/components/client/layout/AnimatedSection";
+import ScrollAnimatedCard from "./components/ScrollAnimatedCard";
 
 const icons = {
   item_1: Wrench,
@@ -58,7 +59,7 @@ interface ServicesProps {
 
 export function Services({ data }: ServicesProps) {
   const keys = Object.keys(data).filter(
-    (key) => key !== "main" && key !== "software" && key !== "warranty"
+    (key) => key !== "main" && key !== "software" && key !== "warranty",
   );
 
   const services = keys.map((key) => {
@@ -73,140 +74,88 @@ export function Services({ data }: ServicesProps) {
   });
 
   return (
-    <section className="py-16 bg-white" id="services">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Wave Layer 1 */}
-        <svg
-          className="absolute top-0 right-0 w-full h-full opacity-30"
-          preserveAspectRatio="none"
-          viewBox="0 0 1440 800"
-        >
-          <defs>
-            <linearGradient
-              id="services-wave-1"
-              x1="0%"
-              y1="0%"
-              x2="100%"
-              y2="100%"
-            >
-              <stop offset="0%" stopColor="#1173bc" stopOpacity="0.12" />
-              <stop offset="100%" stopColor="#2f3092" stopOpacity="0.06" />
-            </linearGradient>
-          </defs>
-          <path
-            fill="url(#services-wave-1)"
-            d="M0,200 C360,140 540,240 900,200 C1260,160 1320,260 1440,220 L1440,0 L0,0 Z"
-          />
-        </svg>
+    <section className="py-12 bg-white" id="services">
+      <div className="max-w-7xl mx-auto px-6 relative z-10 overflow-hidden">
+        <div className="grid md:grid-cols-2 gap-8 items-center mb-16 ">
+          {/* Left side → title */}
+          <AnimatedSection
+            initial="hidden"
+            whileInView="visible"
+            variants={fadeInLeft(3)}
+            className="text-left"
+          >
+            <span className="uppercase tracking-[0.25em] text-[10px] md:text-sm font-semibold text-[#24aae1]">
+              Soluciones biomédicas
+            </span>
 
-        {/* Wave Layer 2 */}
-        <svg
-          className="absolute bottom-0 left-0 w-full h-2/3 opacity-20"
-          preserveAspectRatio="none"
-          viewBox="0 0 1440 800"
-        >
-          <defs>
-            <linearGradient
-              id="services-wave-2"
-              x1="100%"
-              y1="0%"
-              x2="0%"
-              y2="100%"
-            >
-              <stop offset="0%" stopColor="#24aae1" stopOpacity="0.1" />
-              <stop offset="100%" stopColor="#1173bc" stopOpacity="0.05" />
-            </linearGradient>
-          </defs>
-          <path
-            fill="url(#services-wave-2)"
-            d="M0,500 C320,440 480,560 800,520 C1120,480 1280,580 1440,540 L1440,800 L0,800 Z"
-          />
-        </svg>
-
-        {/* Floating Circles */}
-        <div className="absolute top-20 left-20 w-64 h-64 bg-linear-to-br from-[#1173bc]/8 to-transparent rounded-full blur-3xl"></div>
-        <div className="absolute bottom-32 right-32 w-96 h-96 bg-linear-to-tr from-[#24aae1]/6 to-transparent rounded-full blur-3xl"></div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-6">
-        <AnimatedSection
-          className="text-center mb-16"
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportConfigSection}
-          variants={fadeIn}
-        >
-          <div className="text-center mb-16 relative">
-            <h2 className="mb-4 text-[#2f3092] text-2xl font-bold">
+            <h2 className="mt-3 text-[#2f3092] text-2xl md:text-[56px] font-extrabold leading-tight">
               {data.main.title}
             </h2>
-            <div className="inline-flex items-center gap-2 mb-4 px-6 py-2 bg-linear-to-r from-[#24aae1]/10 via-[#1173bc]/10 to-[#2f3092]/10 backdrop-blur-sm rounded-full border border-[#24aae1]/20">
-              <BookUser className="w-5 h-5 text-[#24aae1] hidden md:inline" />
-              <span className="text-sm text-[#1173bc]">
+
+            <div className="mt-4 w-12 h-1 md:w-20 md:h-1.5 bg-linear-to-r from-transparent via-[#24aae1] to-transparent rounded-full"></div>
+          </AnimatedSection>
+
+          {/* Right side → description */}
+          <AnimatedSection
+            initial="hidden"
+            whileInView="visible"
+            variants={fadeInRight(3)}
+            className="md:justify-self-end"
+          >
+            <div className="inline-flex items-center gap-5 mb-4 px-5 py-5 md:px-7 md:py-8 bg-linear-to-r from-[#24aae1]/10 via-[#1173bc]/10 to-[#2f3092]/10 backdrop-blur-sm rounded-4xl border border-[#24aae1]/20">
+              <BookUser className="w-12 h-12 text-[#24aae1] hidden md:inline" />
+              <p className="text-[#2f3092]/80 max-w-md text-xs leading-relaxed md:text-base">
                 {data.main.description}
-              </span>
+              </p>
             </div>
-            <div className="w-24 h-1 bg-linear-to-r from-transparent via-[#24aae1] to-transparent mx-auto rounded-full"></div>
-          </div>
-        </AnimatedSection>
+          </AnimatedSection>
+        </div>
 
         {/* Main 3x2 Grid */}
-        <AnimatedSection
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6"
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportConfig}
-          variants={staggerContainer}
-        >
-          {services.map((service, index) => (
-            <AnimatedSection
-              key={index}
-              variants={fadeInUp(3)}
-              className="w-full h-full flex"
-            >
-              <Card
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+          {services.map((service, index) => {
+            const direction =
+              index % 3 === 0 ? "left" : index % 3 === 2 ? "right" : "up";
+            return (
+              <ScrollAnimatedCard
                 key={index}
-                className="group hover:shadow-xl transition-all duration-300 border-[#E5E7EB] rounded-3xl overflow-hidden hover:-translate-y-1 bg-white shadow-sm"
+                index={index}
+                direction={direction}
               >
-                {/* Image Header */}
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={service.imageUrl}
-                    alt={service.title}
-                    className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
-                  />
+                <Card className="group hover:shadow-xl transition-all duration-300 border-[#E5E7EB] rounded-3xl overflow-hidden hover:-translate-y-1 bg-white shadow-sm w-full h-full flex flex-col">
+                  {/* Image Header */}
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={service.imageUrl}
+                      alt={service.title}
+                      className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
+                    />
 
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-linear-to-t from-[#0C0F39]/90 via-[#0C0F39]/40 to-transparent" />
+                    <div className="absolute inset-0 bg-linear-to-t from-[#0C0F39]/90 via-[#0C0F39]/40 to-transparent" />
 
-                  {/* Icon Badge */}
-                  <div className="absolute bottom-4 right-4 w-14 h-14 bg-linear-to-br from-[#24aae1] to-[#1173bc] rounded-xl flex items-center justify-center shadow-lg shadow-[#24aae1]/30 group-hover:scale-110 transition-transform">
-                    <service.icon className="h-7 w-7 text-white" />
+                    <div className="absolute bottom-4 right-4 w-14 h-14 bg-linear-to-br from-[#24aae1] to-[#1173bc] rounded-xl flex items-center justify-center shadow-lg shadow-[#24aae1]/30 group-hover:scale-110 transition-transform">
+                      <service.icon className="h-7 w-7 text-white" />
+                    </div>
                   </div>
-                </div>
 
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-[#2f3092] ">
-                    {service.title}
-                  </CardTitle>
-                </CardHeader>
+                  <CardHeader className="pt-1 px-2 md:px-6 md:pb-3 text-center md:text-left">
+                    <CardTitle className="text-[#2f3092] font-bold text-sm md:text-base">
+                      {service.title}
+                    </CardTitle>
+                  </CardHeader>
 
-                <CardContent>
-                  <p className="text-[#2f3092] leading-relaxed">
-                    {service.description}
-                  </p>
-                </CardContent>
-              </Card>
-            </AnimatedSection>
-          ))}
-        </AnimatedSection>
+                  <CardContent className="px-2 md:px-6">
+                    <p className="text-[#2f3092] leading-relaxed text-sm md:text-base text-center md:text-left">
+                      {service.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </ScrollAnimatedCard>
+            );
+          })}
+        </div>
 
-        <AnimatedSection
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportConfig}
-          variants={fadeInUp()}
-        >
+        <ScrollAnimatedCard index={1} direction={"left"}>
           {/* Featured Full-Width Maintenance Software Card */}
           <Card className="group hover:shadow-2xl transition-all duration-300 border-[#E5E7EB] rounded-3xl overflow-hidden bg-white shadow-xl relative">
             <div className="grid md:grid-cols-2 gap-0">
@@ -238,12 +187,16 @@ export function Services({ data }: ServicesProps) {
                     <Monitor className="h-10 w-10 text-white" />
                   </div>
 
-                  <h3 className="mb-4 text-white text-3xl">
+                  <h3 className="mb-4 text-white text-2xl md:text-3xl">
                     {" "}
                     {data.software.title}
                   </h3>
-                  <p className="text-white/90 text-base leading-relaxed mb-6">
+                  <p className="text-white/90 text-sm md:text-base leading-relaxed mb-6">
                     {data.software.description}
+                  </p>
+
+                  <p className="text-white/90 text-base leading-relaxed mb-6">
+                    {data.software.description_2}
                   </p>
 
                   <ButtonSoftware textButton={data.software.botton} />
@@ -251,32 +204,35 @@ export function Services({ data }: ServicesProps) {
               </div>
             </div>
           </Card>
-        </AnimatedSection>
+        </ScrollAnimatedCard>
 
         {/* Trust & Expertise Statement */}
         <AnimatedSection
-          className="my-16 max-w-4xl mx-auto"
+          className="my-24 max-w-5xl mx-auto md:px-6"
           initial="hidden"
           whileInView="visible"
           viewport={viewportConfig}
           variants={fadeInUp()}
         >
-          <div className="relative bg-linear-to-br from-[#2f3092]/5 via-[#1173bc]/5 to-[#24aae1]/5  rounded-4xl p-10 md:p-12 border border-[#24aae1]/20  backdrop-blur-sm">
-            {/* Decorative accent line */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-1 bg-linear-to-r from-transparent via-[#24aae1] to-transparent rounded-full"></div>
-
-            <div className="space-y-6 text-center">
-              <p className="text-[#2f3092] text-sm leading-relaxed">
-                {data.warranty.title}
-              </p>
-              <p className="text-[#2f3092] text-sm leading-relaxed">
-                {data.warranty.description}
-              </p>
+          <div className="relative bg-white rounded-3xl shadow-xl border border-[#24aae1]/10 p-2 md:p-14 text-center">
+            {/* Icon */}
+            <div className="mx-auto mb-6 w-16 h-16 flex items-center justify-center rounded-2xl bg-linear-to-br from-[#24aae1] to-[#1173bc] shadow-lg">
+              <ShieldCheck className="w-8 h-8 text-white" />
             </div>
 
-            {/* Decorative gradient orbs */}
-            <div className="absolute -top-10 -right-10 w-32 h-32 bg-linear-to-br from-[#24aae1]/10 to-transparent rounded-full blur-2xl pointer-events-none"></div>
-            <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-linear-to-tr from-[#1173bc]/10 to-transparent rounded-full blur-2xl pointer-events-none"></div>
+            {/* Title */}
+            <h3 className="text-base md:text-3xl font-bold text-[#2f3092] mb-4">
+              Compromiso con la seguridad y precisión biomédica
+            </h3>
+
+            {/* Text */}
+            <p className="text-[#2f3092]/80 max-w-3xl mx-auto leading-relaxed text-sm md:text-base">
+              {data.warranty.title}
+            </p>
+
+            <p className="text-[#2f3092]/80 max-w-3xl mx-auto mt-4 leading-relaxed text-sm md:text-base">
+              {data.warranty.description}
+            </p>
           </div>
         </AnimatedSection>
       </div>

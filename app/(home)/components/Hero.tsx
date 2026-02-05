@@ -1,10 +1,6 @@
 import AnimatedSection from "@/components/client/layout/AnimatedSection";
 import { Hero as HeroType } from "@/types/home";
-import {
-  fadeIn,
-  viewportConfigSection,
-  zoomOutBackground,
-} from "@/utils/animations";
+import { typingReveal, zoomOutBackground } from "@/utils/animations";
 
 interface HeroProps {
   data: HeroType;
@@ -41,8 +37,7 @@ export function Hero({ data }: HeroProps) {
           className="max-w-5xl mx-auto text-center"
           initial="hidden"
           whileInView="visible"
-          viewport={viewportConfigSection}
-          variants={fadeIn}
+          variants={typingReveal(1)}
         >
           {/* Hero content */}
           <h1 className="mb-6 text-5xl lg:text-7xl font-semibold tracking-wide drop-shadow-[0_6px_30px_rgba(0,0,0,0.6)]">

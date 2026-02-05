@@ -7,13 +7,7 @@ import {
 } from "../../../components//server/common/Card";
 import { Visit } from "@/types/home";
 import AnimatedSection from "@/components/client/layout/AnimatedSection";
-import {
-  fadeIn,
-  fadeInLeft,
-  fadeInRight,
-  viewportConfig,
-  viewportConfigSection,
-} from "@/utils/animations";
+import { fadeInLeft, fadeInRight, viewportConfig } from "@/utils/animations";
 
 interface LocationProps {
   data: Visit;
@@ -21,82 +15,43 @@ interface LocationProps {
 export function Location({ data }: LocationProps) {
   return (
     <section className="py-24 bg-white" id="contact">
-      {/* Abstract Biomedical Wave Background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Wave Layer 1 */}
-        <svg
-          className="absolute top-0 left-0 w-full h-full opacity-30"
-          preserveAspectRatio="none"
-          viewBox="0 0 1440 800"
-        >
-          <defs>
-            <linearGradient
-              id="location-wave-1"
-              x1="0%"
-              y1="0%"
-              x2="100%"
-              y2="100%"
-            >
-              <stop offset="0%" stopColor="#1173bc" stopOpacity="0.12" />
-              <stop offset="100%" stopColor="#24aae1" stopOpacity="0.06" />
-            </linearGradient>
-          </defs>
-          <path
-            fill="url(#location-wave-1)"
-            d="M0,150 C320,90 520,190 840,140 C1160,90 1320,180 1440,150 L1440,0 L0,0 Z"
-          />
-        </svg>
-
-        {/* Wave Layer 2 */}
-        <svg
-          className="absolute bottom-0 right-0 w-full h-2/3 opacity-20"
-          preserveAspectRatio="none"
-          viewBox="0 0 1440 800"
-        >
-          <defs>
-            <linearGradient
-              id="location-wave-2"
-              x1="100%"
-              y1="0%"
-              x2="0%"
-              y2="100%"
-            >
-              <stop offset="0%" stopColor="#2f3092" stopOpacity="0.1" />
-              <stop offset="100%" stopColor="#1173bc" stopOpacity="0.05" />
-            </linearGradient>
-          </defs>
-          <path
-            fill="url(#location-wave-2)"
-            d="M0,480 C360,420 540,540 900,480 C1260,420 1320,520 1440,480 L1440,800 L0,800 Z"
-          />
-        </svg>
-
-        {/* Floating Circles */}
-        <div className="absolute top-24 right-32 w-64 h-64 bg-linear-to-br from-[#24aae1]/7 to-transparent rounded-full blur-3xl"></div>
-        <div className="absolute bottom-32 left-24 w-96 h-96 bg-linear-to-tr from-[#1173bc]/6 to-transparent rounded-full blur-3xl"></div>
-      </div>
-
       <div className="max-w-7xl mx-auto px-6">
-        <AnimatedSection
-          className="text-center mb-16 relative"
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportConfigSection}
-          variants={fadeIn}
-        >
-          <h2 className="mb-4 text-[#2f3092] text-2xl font-bold">
-            {data.main.title}
-          </h2>
-          <div className="inline-flex items-center gap-2 mb-4 px-6 py-2 bg-linear-to-r from-[#24aae1]/10 via-[#1173bc]/10 to-[#2f3092]/10 backdrop-blur-sm rounded-full border border-[#24aae1]/20">
-            <MapPin className="w-5 h-5 text-[#24aae1] hidden sm:block" />
-            <span className="text-sm text-[#1173bc]">
-              {data.main.description}
+        <div className="grid md:grid-cols-2 gap-8 items-center mb-16 ">
+          {/* Left side → title */}
+          <AnimatedSection
+            initial="hidden"
+            whileInView="visible"
+            variants={fadeInLeft(3)}
+            className="text-left"
+          >
+            <span className="uppercase tracking-[0.25em] text-[10px] md:text-sm font-semibold text-[#24aae1]">
+              Información de contacto
             </span>
-          </div>
-          <div className="w-24 h-1 bg-linear-to-r from-transparent via-[#24aae1] to-transparent mx-auto rounded-full"></div>
-        </AnimatedSection>
 
-        <div className="grid lg:grid-cols-2 gap-6">
+            <h2 className="mt-3 text-[#2f3092] text-2xl md:text-[56px] font-extrabold leading-tight">
+              {data.main.title}
+            </h2>
+
+            <div className="mt-4 w-12 h-1 md:w-20 md:h-1.5 bg-linear-to-r from-transparent via-[#24aae1] to-transparent rounded-full"></div>
+          </AnimatedSection>
+
+          {/* Right side → description */}
+          <AnimatedSection
+            initial="hidden"
+            whileInView="visible"
+            variants={fadeInRight(3)}
+            className="md:justify-self-end"
+          >
+            <div className="inline-flex items-center gap-5 mb-4 px-5 py-5 md:px-7 md:py-8 bg-linear-to-r from-[#24aae1]/10 via-[#1173bc]/10 to-[#2f3092]/10 backdrop-blur-sm rounded-4xl border border-[#24aae1]/20">
+              <MapPin className="w-12 h-12 text-[#24aae1] " />
+              <p className="text-[#2f3092]/80 max-w-md text-xs leading-relaxed md:text-base">
+                {data.main.description}
+              </p>
+            </div>
+          </AnimatedSection>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-6 overflow-hidden w-full">
           {/* Map Card - Left side, large */}
           <AnimatedSection
             className="w-full h-full"
@@ -106,7 +61,7 @@ export function Location({ data }: LocationProps) {
             variants={fadeInLeft(5)}
           >
             <Card className="rounded-3xl overflow-hidden shadow-sm border-[#E5E7EB] bg-white h-full">
-              <div className="aspect-4/3 bg-linear-to-br from-gray-100 to-gray-200 relative flex items-center justify-center">
+              <div className="relative w-full aspect-video overflow-hidden rounded-3xl">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10171.953660190055!2d-74.06421990934408!3d4.670407173117269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9af7442d681d%3A0x4b1e9d2298ff5971!2zQ3JhIDI3ICMgODItMTQsIEJhcnJpb3MgVW5pZG9zLCBCb2dvdMOhLCBELkMuLCBCb2dvdMOhLCBCb2dvdMOhLCBELkMu!5e0!3m2!1ses!2sco!4v1766513427660!5m2!1ses!2sco"
                   width="100%"
@@ -114,6 +69,7 @@ export function Location({ data }: LocationProps) {
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
+                  className="absolute inset-0 w-full h-full border-0"
                 ></iframe>
               </div>
               <CardHeader>

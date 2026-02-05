@@ -98,7 +98,7 @@ export function About({ data }: AboutProps) {
             {/* Vertical accent bar in electric blue */}
             <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#24aae1] rounded-full"></div>
 
-            <div className="pl-8">
+            <div className="pl-8 text-sm md:text-base">
               <div className="inline-block mb-4 px-4 py-2 bg-[#24aae1]/10 text-[#1173bc] rounded-full">
                 Acerca de nosotros
               </div>

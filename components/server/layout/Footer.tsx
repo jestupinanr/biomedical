@@ -49,7 +49,7 @@ export function Footer({ data, navbarData }: FooterProps) {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="#"
+                  href="#services"
                   className="text-black/70 hover:text-black transition-colors"
                 >
                   {navbarData.navbar.nav_services}
@@ -57,7 +57,7 @@ export function Footer({ data, navbarData }: FooterProps) {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="products"
                   className="text-black/70 hover:text-black transition-colors"
                 >
                   {navbarData.navbar.nav_products}
@@ -65,7 +65,7 @@ export function Footer({ data, navbarData }: FooterProps) {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="hazlo-tu-mismo"
                   className="text-black/70 hover:text-black transition-colors"
                 >
                   {navbarData.navbar.nav_diy}
@@ -80,34 +80,12 @@ export function Footer({ data, navbarData }: FooterProps) {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="#"
+                  href="https://wa.me/573213784799"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-black/70 hover:text-black transition-colors"
                 >
-                  Centro de Ayuda
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-black/70 hover:text-black transition-colors"
-                >
-                  Documentación
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-black/70 hover:text-black transition-colors"
-                >
-                  Capacitación
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-black/70 hover:text-black transition-colors"
-                >
-                  Garantía
+                  Servicio al cliente
                 </a>
               </li>
             </ul>
@@ -124,7 +102,7 @@ export function Footer({ data, navbarData }: FooterProps) {
                 <div className="w-11 h-11 bg-linear-to-br text-white from-[#24aae1] to-[#1173bc] rounded-xl flex items-center justify-center shrink-0 transition-colors">
                   <Mail className="h-5 w-5" />
                 </div>
-                <div className="text-sm">{data.main.email}</div>
+                <div className="text-xs sm:text-sm">{data.main.email}</div>
               </a>
 
               <a
@@ -144,7 +122,7 @@ export function Footer({ data, navbarData }: FooterProps) {
         <div className="pt-8 border-t border-[#1D3DF8]/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-black/70 text-sm">
-              © 2024 Biomedical Endowment. Todos los derechos reservados.
+              © 2026 Biomedical Endowment. Todos los derechos reservados.
             </div>
             <div className="flex gap-6 text-sm">
               <a

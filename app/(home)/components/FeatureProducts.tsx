@@ -17,12 +17,10 @@ import { ImageWithFallback } from "@/components/client/common/ImageWithFallback"
 import { ProductItem, Products as ProductsType } from "@/types/home";
 import AnimatedSection from "@/components/client/layout/AnimatedSection";
 import {
-  fadeIn,
   fadeInLeft,
   fadeInRight,
   fadeInUp,
   viewportConfig,
-  viewportConfigSection,
 } from "@/utils/animations";
 
 interface ProductProps {
@@ -34,7 +32,7 @@ export function FeaturedProducts({ data }: ProductProps) {
     const message = encodeURIComponent(
       `Hi, I'm interested in the ${productName}. Could you please provide pricing information?`,
     );
-    window.open(`https://wa.me/1234567890?text=${message}`, "_blank");
+    window.open(`https://wa.me/573213784799?text=${message}`, "_blank");
   };
 
   const products = Object.keys(data)
@@ -124,27 +122,40 @@ export function FeaturedProducts({ data }: ProductProps) {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <AnimatedSection
-          className="text-center mb-16 relative"
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportConfigSection}
-          variants={fadeIn}
-        >
-          {/* Header with Fluid Accent */}
-          <div className="text-center mb-16 relative">
-            <h2 className="mb-4 text-[#2f3092] text-2xl font-bold">
+        <div className="grid md:grid-cols-2 gap-8 items-center mb-16 ">
+          {/* Left side → title */}
+          <AnimatedSection
+            initial="hidden"
+            whileInView="visible"
+            variants={fadeInLeft(3)}
+            className="text-left"
+          >
+            <span className="uppercase tracking-[0.25em] text-[10px] md:text-sm font-semibold text-[#24aae1]">
+              Nuestra propuesta de valor
+            </span>
+
+            <h2 className="mt-3 text-[#2f3092] text-2xl md:text-[56px] font-extrabold leading-tight">
               {data.main.title}
             </h2>
-            <div className="inline-flex items-center gap-2 mb-4 px-6 py-2 bg-linear-to-r from-[#24aae1]/10 via-[#1173bc]/10 to-[#2f3092]/10 backdrop-blur-sm rounded-full border border-[#24aae1]/20">
-              <ShoppingCart className="w-5 h-5 text-[#24aae1] hidden md:inline" />
-              <span className="text-sm text-[#1173bc]">
+
+            <div className="mt-4 w-12 h-1 md:w-20 md:h-1.5 bg-linear-to-r from-transparent via-[#24aae1] to-transparent rounded-full"></div>
+          </AnimatedSection>
+
+          {/* Right side → description */}
+          <AnimatedSection
+            initial="hidden"
+            whileInView="visible"
+            variants={fadeInRight(3)}
+            className="md:justify-self-end"
+          >
+            <div className="inline-flex items-center gap-5 mb-4 px-5 py-5 md:px-7 md:py-8 bg-linear-to-r from-[#24aae1]/10 via-[#1173bc]/10 to-[#2f3092]/10 backdrop-blur-sm rounded-4xl border border-[#24aae1]/20">
+              <ShoppingCart className="w-12 h-12 text-[#24aae1]" />
+              <p className="text-[#2f3092]/80 max-w-md text-xs leading-relaxed md:text-base">
                 {data.main.description}
-              </span>
+              </p>
             </div>
-            <div className="w-24 h-1 bg-linear-to-r from-transparent via-[#24aae1] to-transparent mx-auto rounded-full"></div>
-          </div>
-        </AnimatedSection>
+          </AnimatedSection>
+        </div>
 
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Left side - 2x2 grid of product cards */}
@@ -159,7 +170,7 @@ export function FeaturedProducts({ data }: ProductProps) {
               <AnimatedSection
                 key={`${product.title} ${index}`}
                 className="relative group"
-                variants={fadeInLeft(5)}
+                variants={fadeInLeft(2)}
               >
                 <Card className="relative overflow-hidden rounded-4xl border border-[#E5E7EB]/50 shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:shadow-[0_12px_35px_rgb(0,0,0,0.12)] hover:border-[#24aae1]/40 transition-all duration-300 bg-white backdrop-blur-md flex flex-col h-full">
                   {/* Offer Badge - Organic Shape */}
@@ -201,15 +212,15 @@ export function FeaturedProducts({ data }: ProductProps) {
                   </div>
 
                   <CardHeader className="pb-2 px-1 md:px-5 pt-2 grow">
-                    <CardTitle className="text-[#2f3092] text-sm leading-tight">
+                    <CardTitle className="text-[#2f3092] text-[10px] md:text-sm leading-tight">
                       {product.title}
                     </CardTitle>
                   </CardHeader>
 
-                  <CardContent className="px-1 md:px-5 pb-1 md:pb-5 pt-0">
+                  <CardContent className="px-4 md:px-5 pb-1 md:pb-5 pt-0">
                     <Button
                       onClick={() => handleWhatsAppClick(product.title)}
-                      className="w-full bg-linear-to-r from-[#24aae1] to-[#1173bc] hover:from-[#1173bc] hover:to-[#2f3092] text-white rounded-full text-xs py-3 h-auto shadow-md hover:shadow-lg shadow-[#24aae1]/30 hover:shadow-[#1173bc]/40 transition-all duration-300 border-0 cursor-pointer"
+                      className="w-full bg-linear-to-r from-[#24aae1] to-[#1173bc] hover:from-[#1173bc] hover:to-[#2f3092] text-white rounded-full text-[10px] md:text-xs md:py-3 h-auto shadow-md hover:shadow-lg shadow-[#24aae1]/30 hover:shadow-[#1173bc]/40 transition-all duration-300 border-0 cursor-pointer"
                     >
                       <MessageCircle className="mr-2 h-3.5 w-3.5" />
                       Consultar
@@ -226,7 +237,7 @@ export function FeaturedProducts({ data }: ProductProps) {
             initial="hidden"
             whileInView="visible"
             viewport={viewportConfig}
-            variants={fadeInRight(5)}
+            variants={fadeInRight(2, 1)}
           >
             {/* <div className="flex justify-center items-center relative"> */}
             <Card className="group rounded-3xl border-[#E5E7EB] shadow-xl hover:shadow-2xl transition-all bg-white w-full flex flex-col ">
@@ -236,17 +247,14 @@ export function FeaturedProducts({ data }: ProductProps) {
                   src="/test-image.webp"
                   alt="test-image"
                   className="w-108 h-108 object-cover group-hover:scale-105 transition-transform duration-500 absolute top-0 lg:top-1/4"
-                  // width={100}
-                  // height={100}
                 />
               </div>
             </Card>
-            {/* </div> */}
           </AnimatedSection>
         </div>
         {/* Show More Button */}
         <AnimatedSection
-          className="mt-12 text-center"
+          className="mt-32 md:mt-12 text-center"
           initial="hidden"
           whileInView="visible"
           viewport={viewportConfig}
@@ -259,7 +267,7 @@ export function FeaturedProducts({ data }: ProductProps) {
                 catalogSection.scrollIntoView({ behavior: "smooth" });
               }
             }}
-            className="bg-white text-[#1173bc] border-2 border-[#1173bc] hover:bg-[#1173bc] hover:text-white rounded-full px-10 py-6 shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center gap-2 cursor-pointer"
+            className="bg-white text-[#1173bc] border-2 border-[#1173bc] hover:bg-[#1173bc] hover:text-white rounded-full px-10 py-6 shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center gap-2 cursor-pointer "
           >
             <span>Ver más productos</span>
             <ArrowRight className="h-5 w-5" />
