@@ -1,6 +1,13 @@
 import { ImageWithFallback } from "@/components/client/common/ImageWithFallback";
 import { Config, Footer as FooterType } from "@/types/general";
-import { Mail, Phone, Linkedin, Twitter, Facebook } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  Linkedin,
+  Twitter,
+  Facebook,
+  Instagram,
+} from "lucide-react";
 
 interface FooterProps {
   data: FooterType;
@@ -23,22 +30,11 @@ export function Footer({ data, navbarData }: FooterProps) {
             <p className="text-black/70 mb-6">{data.main.description}</p>
             <div className="flex gap-3">
               <a
-                href="#"
+                href="https://www.instagram.com/endowment.co?igsh=M3h3OHJjNWR5djlj"
+                target="_blank"
                 className="w-11 h-11 bg-linear-to-br text-white from-[#24aae1] to-[#1173bc] rounded-xl flex items-center justify-center transition-colors"
               >
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
-                className="w-11 h-11 bg-linear-to-br text-white from-[#24aae1] to-[#1173bc] rounded-xl flex items-center justify-center transition-colors"
-              >
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
-                className="w-11 h-11 bg-linear-to-br text-white from-[#24aae1] to-[#1173bc] rounded-xl flex items-center justify-center transition-colors"
-              >
-                <Facebook className="h-5 w-5" />
+                <Instagram className="h-5 w-5" />
               </a>
             </div>
           </div>

@@ -1,8 +1,9 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 import { Input } from "@/components/client/form/Input";
 import { ProductCompleteItem } from "@/types/product";
 import { Filter, Search, X } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import ProductCard from "./ProductCard";
 import AnimatedSection from "@/components/client/layout/AnimatedSection";
 import { Button } from "@/components/client/common/Button";
@@ -14,6 +15,10 @@ interface ProductListProps {
 }
 
 const ProductsList = ({ catalogProducts, categories }: ProductListProps) => {
+  const ITEMS_PER_PAGE = 20;
+  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
+  const loadMoreRef = useRef<HTMLDivElement | null>(null);
+
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("todos");
 
@@ -41,6 +46,41 @@ const ProductsList = ({ catalogProducts, categories }: ProductListProps) => {
       return matchesSearch && matchesCategory;
     });
   }, [searchQuery, selectedCategory, catalogProducts]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const firstEntry = entries[0];
+
+        if (firstEntry.isIntersecting) {
+          setVisibleCount((prev) =>
+            prev + ITEMS_PER_PAGE > filteredProducts.length
+              ? filteredProducts.length
+              : prev + ITEMS_PER_PAGE,
+          );
+        }
+      },
+      {
+        threshold: 1,
+      },
+    );
+
+    const currentRef = loadMoreRef.current;
+
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, [filteredProducts.length]);
+
+  useEffect(() => {
+    setVisibleCount(ITEMS_PER_PAGE);
+  }, [searchQuery, selectedCategory]);
 
   return (
     <div className="w-full">
@@ -116,7 +156,7 @@ const ProductsList = ({ catalogProducts, categories }: ProductListProps) => {
 
       {/* Products Grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-6">
-        {filteredProducts.map((product, index) => (
+        {filteredProducts.slice(0, visibleCount).map((product, index) => (
           <ProductCard key={product.title + index} product={product} />
         ))}
       </div>
@@ -146,6 +186,12 @@ const ProductsList = ({ catalogProducts, categories }: ProductListProps) => {
           </Button>
         </AnimatedSection>
       )}
+      {visibleCount < filteredProducts.length && (
+        <p className="text-center py-4 text-sm text-gray-400">
+          Cargando más productos...
+        </p>
+      )}
+      <div ref={loadMoreRef} className="h-10" />
 
       {/* Total Products Info */}
       {filteredProducts.length > 0 && (
