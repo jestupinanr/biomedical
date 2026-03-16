@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextResponse } from "next/server";
 import { getSheetData } from "../../lib/sheets";
+import { fallbackProducts } from "../../lib/fallbacks";
 
 export async function GET() {
   try {
@@ -15,8 +16,8 @@ export async function GET() {
     if (!rows || rows.length === 0) {
       return NextResponse.json({
         ok: false,
-        source: "google-sheets",
-        data: {},
+        source: "fallback",
+        data: fallbackProducts,
       });
     }
 
@@ -47,11 +48,10 @@ export async function GET() {
   } catch (error) {
     console.error("❌ Sheets error, sending fallback:", error);
 
-    // fallback 100% seguro
     return NextResponse.json({
       ok: false,
       source: "fallback",
-      data: {},
+      data: fallbackProducts,
     });
   }
 }

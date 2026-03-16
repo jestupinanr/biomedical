@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextResponse } from "next/server";
 import { getSheetData } from "../../lib/sheets";
+import { fallbackLayout } from "../../lib/fallbacks";
 
 // 1️⃣ Valores DEFAULT (fallback seguro)
 // const defaultConfig = {
@@ -49,7 +50,7 @@ export async function GET() {
       return NextResponse.json({
         ok: false,
         source: "fallback",
-        data: {},
+        data: fallbackLayout,
       });
     }
 
@@ -84,11 +85,10 @@ export async function GET() {
   } catch (error) {
     console.error("❌ Sheets error, sending fallback:", error);
 
-    // fallback 100% seguro
     return NextResponse.json({
       ok: false,
       source: "fallback",
-      data: {},
+      data: fallbackLayout,
     });
   }
 }

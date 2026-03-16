@@ -1,10 +1,6 @@
-import { Youtube } from "lucide-react";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-} from "../../../components/server/common/Card";
+"use client";
+
+import { Youtube, ExternalLink } from "lucide-react";
 import AnimatedSection from "@/components/client/layout/AnimatedSection";
 import { fadeInUp, viewportConfig } from "@/utils/animations";
 
@@ -14,23 +10,22 @@ interface VideoCardProps {
     title: string;
     description: string;
   };
+  index: number;
 }
 
-const VideoCard = ({ video }: VideoCardProps) => {
+const VideoCard = ({ video, index }: VideoCardProps) => {
+  const number = String(index + 1).padStart(2, "0");
+
   return (
     <AnimatedSection
-      className="text-center py-16"
       initial="hidden"
       whileInView="visible"
       viewport={viewportConfig}
-      variants={fadeInUp(3)}
+      variants={fadeInUp(0.5)}
     >
-      <Card className="overflow-hidden rounded-xl border border-[#E5E7EB] bg-white transition-all hover:shadow-lg gap-2">
-        {/* Video */}
-        <div
-          className="relative w-full bg-black"
-          style={{ paddingBottom: "56.25%" }} // 16:9
-        >
+      <div className="group flex flex-col bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 h-full">
+        {/* iframe */}
+        <div className="relative w-full shrink-0" style={{ paddingBottom: "56.25%" }}>
           <iframe
             className="absolute inset-0 h-full w-full"
             src={`https://www.youtube.com/embed/${video.videoId}?modestbranding=1&rel=0`}
@@ -38,26 +33,46 @@ const VideoCard = ({ video }: VideoCardProps) => {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           />
+          {/* Number badge — sits outside iframe click area */}
+          <div className="pointer-events-none absolute top-3 left-3 z-10 w-8 h-8 rounded-full bg-[#1173bc] text-white text-xs font-bold flex items-center justify-center shadow-lg">
+            {number}
+          </div>
         </div>
 
         {/* Content */}
-        <CardHeader className="px-2 pt-0">
-          <CardTitle className="items-start gap-2 text-xs font-semibold text-[#0C0F39] leading-snug line-clamp-2">
-            <div className="flex gap-2 items-center">
-              <div className="rounded-full flex items-center justify-center bg-white w-12 h-12 border border-[#E5E7EB]">
-                <Youtube className="mt-0.5 h-8 w-8 shrink-0 text-red-600" />
-              </div>
-              <p>{video.title}</p>
+        <div className="flex flex-col flex-1 p-5 gap-3">
+          {/* Label row */}
+          <div className="flex items-center gap-2">
+            <div className="p-1.5 rounded-lg bg-red-50 shrink-0">
+              <Youtube className="h-3.5 w-3.5 text-red-600" />
             </div>
-          </CardTitle>
-        </CardHeader>
+            <span className="text-[10px] font-semibold tracking-wider uppercase text-[#1173bc]">
+              Tutorial {number}
+            </span>
+          </div>
 
-        <CardContent className="px-5 pb-4 pt-0">
-          <p className="text-xs text-gray-600 leading-relaxed line-clamp-3">
+          {/* Title */}
+          <h3 className="text-sm font-semibold text-[#0C0F39] leading-snug line-clamp-2 group-hover:text-[#1173bc] transition-colors duration-200">
+            {video.title}
+          </h3>
+
+          {/* Description */}
+          <p className="text-xs text-gray-500 leading-relaxed line-clamp-3 flex-1">
             {video.description}
           </p>
-        </CardContent>
-      </Card>
+
+          {/* Footer link */}
+          <a
+            href={`https://www.youtube.com/watch?v=${video.videoId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-[11px] font-medium text-[#24aae1] hover:text-[#1173bc] transition-colors mt-1 self-start"
+          >
+            Ver en YouTube
+            <ExternalLink className="h-3 w-3" />
+          </a>
+        </div>
+      </div>
     </AnimatedSection>
   );
 };

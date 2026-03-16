@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Hero } from "./components/Hero";
 import { Services } from "./components/service/Services";
 import { About } from "./components/About";
@@ -6,6 +7,48 @@ import { Experience } from "./components/Experience";
 import { Location } from "./components/Location";
 import { HomeContent } from "@/types/home";
 import { headers } from "next/headers";
+import { JsonLd } from "@/components/server/common/JsonLd";
+
+export const metadata: Metadata = {
+  title: "Inicio",
+  description:
+    "Biomedical Endowment — Proveedor líder de equipos médicos y servicios biomédicos en Colombia. Mantenimiento preventivo, correctivo y venta de equipos hospitalarios.",
+  alternates: {
+    canonical: "https://www.biomedicalendowment.com",
+  },
+};
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalOrganization",
+  name: "Biomedical Endowment",
+  url: "https://www.biomedicalendowment.com",
+  logo: "https://www.biomedicalendowment.com/navbar-logo.png",
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+57-321-378-4799",
+    contactType: "customer service",
+    availableLanguage: "Spanish",
+  },
+  sameAs: ["https://www.instagram.com/endowment.co"],
+  email: "info@biomedicalendowment.com",
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Biomedical Endowment",
+  url: "https://www.biomedicalendowment.com",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate:
+        "https://www.biomedicalendowment.com/products?q={search_term_string}",
+    },
+    "query-input": "required name=search_term_string",
+  },
+};
 
 const getData = async (): Promise<HomeContent> => {
   const headersList = await headers();
@@ -28,6 +71,7 @@ export default async function Home() {
 
   return (
     <div className="min-h-screen">
+      <JsonLd data={[organizationSchema, websiteSchema]} />
       <Hero data={data.hero} />
       <Services data={data.services} />
       <FeaturedProducts data={data.products} />

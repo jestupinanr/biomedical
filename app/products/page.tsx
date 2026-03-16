@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { MiniBanner } from "@/components/server/common/MiniBanner";
 import { ShoppingCart } from "lucide-react";
 import ProductsList from "./components/ProductsList";
@@ -5,6 +6,44 @@ import { ProductContent } from "@/types/product";
 import { headers } from "next/headers";
 import AnimatedSection from "@/components/client/layout/AnimatedSection";
 import { fadeInDown, viewportConfigSection } from "@/utils/animations";
+import { JsonLd } from "@/components/server/common/JsonLd";
+
+export const metadata: Metadata = {
+  title: "Catálogo de Productos",
+  description:
+    "Explora nuestro catálogo de equipos médicos y biomédicos. Ventiladores, monitores, desfibriladores, equipos de diagnóstico y más. Calidad garantizada para clínicas y hospitales en Colombia.",
+  keywords: [
+    "catálogo equipos médicos",
+    "ventiladores médicos",
+    "monitores pacientes",
+    "desfibriladores",
+    "equipos diagnóstico médico",
+    "comprar equipos hospitalarios Colombia",
+  ],
+  alternates: {
+    canonical: "https://www.biomedicalendowment.com/products",
+  },
+  openGraph: {
+    title: "Catálogo de Productos Médicos | Biomedical Endowment",
+    description:
+      "Equipos médicos de alta calidad para clínicas y hospitales. Amplio catálogo con las mejores marcas.",
+    url: "https://www.biomedicalendowment.com/products",
+  },
+};
+
+const productCatalogSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Catálogo de Productos Biomédicos",
+  description:
+    "Catálogo completo de equipos médicos y biomédicos de Biomedical Endowment.",
+  url: "https://www.biomedicalendowment.com/products",
+  provider: {
+    "@type": "Organization",
+    name: "Biomedical Endowment",
+    url: "https://www.biomedicalendowment.com",
+  },
+};
 
 const getData = async (): Promise<ProductContent> => {
   const headersList = await headers();
@@ -38,6 +77,7 @@ export default async function Products() {
 
   return (
     <section className="bg-white min-h-screen">
+      <JsonLd data={productCatalogSchema} />
       {/* Mini Banner */}
       <MiniBanner
         title="Catalogo de Productos"
