@@ -189,12 +189,8 @@ export const fallbackHome: HomeContent = {
 // ─────────────────────────────────────────────
 // PRODUCTS  (Productos sheet)
 // ─────────────────────────────────────────────
-export const fallbackProducts: ProductContent = {
+export const fallbackProducts = {
   product: {
-    main: {
-      description:
-        "Explora nuestro catálogo de equipos médicos y biomédicos de alta calidad.",
-    },
     item_1: {
       title: "Ventilador Mecánico",
       category: "Ventilación",
@@ -204,13 +200,17 @@ export const fallbackProducts: ProductContent = {
       description:
         "Ventilador de alto rendimiento para soporte respiratorio en UCI y emergencias.",
     },
+    main: {
+      description:
+        "Explora nuestro catálogo de equipos médicos y biomédicos de alta calidad.",
+    },
   },
 };
 
 // ─────────────────────────────────────────────
 // VIDEOS  (Videos sheet)
 // ─────────────────────────────────────────────
-export const fallbackVideos: VideosContent = {
+export const fallbackVideos = {
   videos: {
     main: {
       description:

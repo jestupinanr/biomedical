@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { MiniBanner } from "@/components/server/common/MiniBanner";
-import { GraduationCap, ShieldCheck, MessageCircle, PlayCircle } from "lucide-react";
+import {
+  GraduationCap,
+  ShieldCheck,
+  MessageCircle,
+  PlayCircle,
+} from "lucide-react";
 import { VideosContent } from "@/types/videos";
 import { headers } from "next/headers";
 import AnimatedSection from "@/components/client/layout/AnimatedSection";
@@ -80,7 +85,6 @@ export default async function HazloTuMismo() {
 
       <div className="py-20">
         <div className="max-w-7xl mx-auto px-6">
-
           {/* ── Section header ── */}
           <AnimatedSection
             className="text-center mb-16"
@@ -124,7 +128,9 @@ export default async function HazloTuMismo() {
               <span className="text-sm font-semibold text-[#0C0F39]">
                 {videosArray.length}{" "}
                 <span className="font-normal text-gray-500">
-                  {videosArray.length === 1 ? "tutorial disponible" : "tutoriales disponibles"}
+                  {videosArray.length === 1
+                    ? "tutorial disponible"
+                    : "tutoriales disponibles"}
                 </span>
               </span>
             </div>
@@ -132,7 +138,9 @@ export default async function HazloTuMismo() {
               <ShieldCheck className="w-5 h-5 text-[#1173bc]" />
               <span className="text-sm font-semibold text-[#0C0F39]">
                 Contenido{" "}
-                <span className="font-normal text-gray-500">verificado por expertos</span>
+                <span className="font-normal text-gray-500">
+                  verificado por expertos
+                </span>
               </span>
             </div>
           </AnimatedSection>
@@ -188,7 +196,6 @@ export default async function HazloTuMismo() {
               </div>
             </div>
           </AnimatedSection>
-
         </div>
       </div>
     </section>
