@@ -115,7 +115,7 @@ export function Experience({ impact }: ExperienceProps) {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-[#0E0E0E] leading-relaxed text-xs md:text-base">
+                    <p className="text-[#0E0E0E] leading-relaxed text-xs md:text-base text-justify">
                       {prop.description}
                     </p>
                   </CardContent>

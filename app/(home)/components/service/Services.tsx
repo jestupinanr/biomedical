@@ -145,7 +145,7 @@ export function Services({ data }: ServicesProps) {
                   </CardHeader>
 
                   <CardContent className="px-2 md:px-6">
-                    <p className="text-[#2f3092] leading-relaxed text-sm md:text-base text-center md:text-left">
+                    <p className="text-[#2f3092] leading-relaxed text-sm md:text-base text-justify">
                       {service.description}
                     </p>
                   </CardContent>
@@ -191,11 +191,11 @@ export function Services({ data }: ServicesProps) {
                     {" "}
                     {data.software.title}
                   </h3>
-                  <p className="text-white/90 text-sm md:text-base leading-relaxed mb-6">
+                  <p className="text-white/90 text-sm md:text-base leading-relaxed mb-6 text-justify">
                     {data.software.description}
                   </p>
 
-                  <p className="text-white/90 text-base leading-relaxed mb-6">
+                  <p className="text-white/90 text-base leading-relaxed mb-6 text-justify">
                     {data.software.description_2}
                   </p>
 

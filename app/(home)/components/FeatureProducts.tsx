@@ -22,12 +22,14 @@ import {
   fadeInUp,
   viewportConfig,
 } from "@/utils/animations";
+import { useRouter } from "next/navigation";
 
 interface ProductProps {
   data: ProductsType;
 }
 
 export function FeaturedProducts({ data }: ProductProps) {
+  const router = useRouter();
   const handleWhatsAppClick = (productName: string) => {
     const message = encodeURIComponent(
       `Hi, I'm interested in the ${productName}. Could you please provide pricing information?`,
@@ -244,9 +246,9 @@ export function FeaturedProducts({ data }: ProductProps) {
               {/* Featured product image */}
               <div className=" bg-linear-to-br from-[#24aae1] to-[#24aae1]/80 rounded-xl flex items-center justify-center h-80">
                 <ImageWithFallback
-                  src="/test-image.webp"
+                  src="/cable.png"
                   alt="test-image"
-                  className="w-108 h-108 object-cover group-hover:scale-105 transition-transform duration-500 absolute top-0 lg:top-1/4"
+                  className="w-80 h-80 sm:w-108 sm:h-108 object-cover group-hover:scale-105 transition-transform duration-500 absolute top-0 lg:top-[28%]"
                 />
               </div>
             </Card>
@@ -262,10 +264,11 @@ export function FeaturedProducts({ data }: ProductProps) {
         >
           <Button
             onClick={() => {
-              const catalogSection = document.getElementById("product-catalog");
-              if (catalogSection) {
-                catalogSection.scrollIntoView({ behavior: "smooth" });
-              }
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+              });
+              router.push("/products");
             }}
             className="bg-white text-[#1173bc] border-2 border-[#1173bc] hover:bg-[#1173bc] hover:text-white rounded-full px-10 py-6 shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center gap-2 cursor-pointer "
           >

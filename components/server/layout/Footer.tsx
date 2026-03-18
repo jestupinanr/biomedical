@@ -1,13 +1,6 @@
 import { ImageWithFallback } from "@/components/client/common/ImageWithFallback";
 import { Config, Footer as FooterType } from "@/types/general";
-import {
-  Mail,
-  Phone,
-  Linkedin,
-  Twitter,
-  Facebook,
-  Instagram,
-} from "lucide-react";
+import { Mail, Phone, Facebook, Instagram, Music2 } from "lucide-react";
 
 interface FooterProps {
   data: FooterType;
@@ -35,6 +28,20 @@ export function Footer({ data, navbarData }: FooterProps) {
                 className="w-11 h-11 bg-linear-to-br text-white from-[#24aae1] to-[#1173bc] rounded-xl flex items-center justify-center transition-colors"
               >
                 <Instagram className="h-5 w-5" />
+              </a>
+              <a
+                href="https://www.facebook.com/share/1AvSMyJu8L/?mibextid=wwXIfr"
+                target="_blank"
+                className="w-11 h-11 bg-linear-to-br text-white from-[#24aae1] to-[#1173bc] rounded-xl flex items-center justify-center transition-colors"
+              >
+                <Facebook className="h-5 w-5" />
+              </a>
+              <a
+                href="https://www.tiktok.com/@endowment.co?_r=1&_t=ZS-94lg3BCjA8t"
+                target="_blank"
+                className="w-11 h-11 bg-linear-to-br text-white from-[#24aae1] to-[#1173bc] rounded-xl flex items-center justify-center transition-colors"
+              >
+                <Music2 className="h-5 w-5" />
               </a>
             </div>
           </div>

@@ -102,9 +102,15 @@ export function About({ data }: AboutProps) {
               <div className="inline-block mb-4 px-4 py-2 bg-[#24aae1]/10 text-[#1173bc] rounded-full">
                 Acerca de nosotros
               </div>
-              <h2 className="mb-6 text-[#2f3092] ">{data.main.paragraph_1}</h2>
-              <p className="mb-6 text-[#2f3092]/80">{data.main.paragraph_2}</p>
-              <p className="mb-8 text-[#2f3092]/80">{data.main.paragraph_3}</p>
+              <h2 className="mb-6 text-[#2f3092] text-justify">
+                {data.main.paragraph_1}
+              </h2>
+              <p className="mb-6 text-[#2f3092]/80 text-justify">
+                {data.main.paragraph_2}
+              </p>
+              <p className="mb-8 text-[#2f3092]/80 text-justify">
+                {data.main.paragraph_3}
+              </p>
 
               {/* <div className="space-y-4">
                 {highlights.map((highlight, index) => (
