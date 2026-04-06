@@ -51,7 +51,7 @@ const ProductCard = ({ product }: ProductProps) => {
         {/* Content */}
         <div className="px-2 flex flex-col h-[154px] text-center">
           <h3 className="text-sm font-semibold text-[#2f3092] leading-tight">
-            {product.title}
+            {product.title.toUpperCase()}
           </h3>
 
           <p className="text-xs text-[#6B7280] leading-relaxed line-clamp-3">
