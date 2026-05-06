@@ -43,10 +43,11 @@ const images = {
     "https://res.cloudinary.com/dbfwjohjx/image/upload/v1767627565/preventivo-1_mzbxgg.jpg",
   item_2:
     "https://res.cloudinary.com/dbfwjohjx/image/upload/v1767627566/correctivo-1_g0pwhm.jpg",
-  item_3: "https://images.unsplash.com/photo-1603398938378-e54eab446dde",
+  item_3:
+    "https://res.cloudinary.com/dbfwjohjx/image/upload/v1778107234/predictivo_quh7mk.jpg",
   item_4: "https://images.unsplash.com/photo-1581090700227-1e37b190418e",
   item_5:
-    "https://images.unsplash.com/photo-1763770472374-b68e6729a46f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNobmljYWwlMjBzdXBwb3J0JTIwdG9vbHN8ZW58MXx8fHwxNzY1NjY1NjI3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    "https://res.cloudinary.com/dbfwjohjx/image/upload/v1778107234/instalacion_ypfedn.jpg",
   item_6:
     "https://res.cloudinary.com/dbfwjohjx/image/upload/v1768684424/capacitacion_vjvtrh.jpg",
   item_7:
