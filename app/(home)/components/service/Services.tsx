@@ -45,13 +45,14 @@ const images = {
     "https://res.cloudinary.com/dbfwjohjx/image/upload/v1767627566/correctivo-1_g0pwhm.jpg",
   item_3:
     "https://res.cloudinary.com/dbfwjohjx/image/upload/v1778107234/predictivo_quh7mk.jpg",
-  item_4: "https://images.unsplash.com/photo-1581090700227-1e37b190418e",
+  item_4:
+    "https://res.cloudinary.com/dbfwjohjx/image/upload/v1778195224/equipo-medico-be_vryjpa.png",
   item_5:
     "https://res.cloudinary.com/dbfwjohjx/image/upload/v1778107234/instalacion_ypfedn.jpg",
   item_6:
     "https://res.cloudinary.com/dbfwjohjx/image/upload/v1768684424/capacitacion_vjvtrh.jpg",
   item_7:
-    "https://images.unsplash.com/photo-1696258686263-9f42a5e34371?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcmVkaWN0aXZlJTIwbWFpbnRlbmFuY2UlMjB0ZWNobm9sb2d5fGVufDF8fHx8MTc2NzYyNTQ1NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+    "https://res.cloudinary.com/dbfwjohjx/image/upload/v1778194814/be-hazlo_tu_mismo_wwdq98.png",
 };
 
 interface ServicesProps {
